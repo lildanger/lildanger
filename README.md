@@ -8,4 +8,4 @@
 
 Audio tech inquiries welcome — including equipment, mixing, mastering, arranging, acoustics, DAWs, plugins, DSP algorithms, synthesizers, analog circuits, and more.
 
-![GitHub Stats](https://streak-stats.demolab.com?user=lildanger&theme=default&hide_border=true)
+
