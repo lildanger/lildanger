@@ -1,6 +1,5 @@
-**废壳星人 / 元明居士**  
-**独立音乐人 / 音频工程师**
+I participated in the game project:  
+[Border Pioneer](https://store.steampowered.com/app/2346410/Border_Pioneer/)
 
-### 欢迎咨询音乐相关的话题：
-包括设备、混音、母带、编曲、声学、宿主、插件、DSP算法、合成器、模拟电路等等；  
-十年老司机，不敢说技术非常顶尖，但至少能让人少走弯路
+Welcome to inquire about audio technology related topics:  
+including equipment, mixing, mastering, arranging, acoustics, DAW, plugins, DSP algorithms, synthesizers, analog circuits, etc.
