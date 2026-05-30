@@ -1,4 +1,5 @@
 Coding since childhood. 10+ years producing.
+
 I make anything with a steady beat and drums — hip-hop, EDM, whatever.
 
 * My Game:  [Border Pioneer](https://store.steampowered.com/app/2346410/Border_Pioneer/)
@@ -7,3 +8,4 @@ I make anything with a steady beat and drums — hip-hop, EDM, whatever.
 
 Audio tech inquiries welcome — including equipment, mixing, mastering, arranging, acoustics, DAWs, plugins, DSP algorithms, synthesizers, analog circuits, and more.
 
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=lildanger)](https://github.com/anuraghazra/github-readme-stats)
