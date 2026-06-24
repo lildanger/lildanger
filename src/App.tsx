@@ -138,10 +138,10 @@ export default function App() {
     },
     {
       title: "网易云音乐人",
-      description: "我的音乐创作基地。主要发布 Hip-hop、EDM 等各类拥有强劲鼓点 (Drum Beats) 的电子风格乐曲，拥有 10+ 年的乐曲制作经验。",
+      description: "我的音乐创作基地，入驻并积累了 17,485+ 粉丝。主要发布 Hip-hop、EDM 等各类拥有强劲鼓点 (Drum Beats) 的电子风格乐曲，拥有 10+ 年的乐曲制作经验。",
       link: "https://music.163.com/#/artist?id=1079143",
       icon: <Music className="h-8 w-8 text-rose-400" />,
-      tags: ["Beatmaking", "Hip-hop", "EDM", "10+ Years"],
+      tags: ["17485+ Fans", "Beatmaking", "Hip-hop", "EDM", "10+ Years"],
     },
     {
       title: "Bilibili频道",
