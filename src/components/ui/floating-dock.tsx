@@ -45,7 +45,7 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "mx-auto hidden md:flex h-16 gap-4 items-end rounded-2xl bg-neutral-900/60 border border-neutral-800/40 backdrop-blur-md px-4 pb-3 shadow-2xl",
+        "mx-auto hidden md:flex h-16 gap-4 items-end rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-lg px-4 pb-3 shadow-[0_8px_32px_rgba(0,0,0,0.4)]",
         className
       )}
     >
@@ -112,7 +112,7 @@ function IconContainer({
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="relative flex items-center justify-center rounded-full bg-neutral-800 hover:bg-neutral-700/80 border border-neutral-700/50 shadow-md cursor-pointer transition-colors duration-200"
+        className="relative flex items-center justify-center rounded-full bg-white/[0.04] hover:bg-white/[0.12] border border-white/10 hover:border-white/20 shadow-[0_4px_12px_rgba(0,0,0,0.2)] backdrop-blur-md cursor-pointer transition-all duration-300"
       >
         <AnimatePresence>
           {hovered && (
@@ -120,7 +120,7 @@ function IconContainer({
               initial={{ opacity: 0, y: 10, x: "-50%" }}
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 2, x: "-50%" }}
-              className="absolute left-1/2 -top-8 -translate-x-1/2 px-2 py-0.5 rounded bg-neutral-900 border border-neutral-800 text-neutral-200 text-xs whitespace-pre shadow-lg z-50 pointer-events-none"
+              className="absolute left-1/2 -top-8 -translate-x-1/2 px-2 py-0.5 rounded-lg bg-white/[0.08] border border-white/10 backdrop-blur-md text-neutral-200 text-xs whitespace-pre shadow-lg z-50 pointer-events-none"
             >
               {title}
             </motion.div>
@@ -151,13 +151,25 @@ const FloatingDockMobile = ({
       <AnimatePresence>
         {open && (
           <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setOpen(false)}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+          />
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {open && (
+          <motion.div
             layoutId="nav"
-            className="absolute bottom-20 right-0 flex flex-col gap-3 items-end"
+            className="absolute bottom-20 right-0 flex flex-col gap-3 items-end z-50"
           >
             {items.map((item, idx) => (
               <motion.a
                 key={item.title}
                 href={item.href}
+                onClick={() => setOpen(false)}
                 target={item.href.startsWith("http") ? "_blank" : undefined}
                 rel="noopener noreferrer"
                 aria-label={item.title}
@@ -174,10 +186,10 @@ const FloatingDockMobile = ({
                   },
                 }}
                 transition={{ delay: (items.length - 1 - idx) * 0.05 }}
-                className="flex items-center gap-3 px-3 py-2 rounded-xl bg-neutral-900 border border-neutral-800 shadow-2xl text-neutral-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/80 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 transition-shadow duration-150"
+                className="flex items-center gap-3 px-3 py-2 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-lg shadow-[0_8px_32px_rgba(0,0,0,0.3)] text-neutral-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/80 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 transition-shadow duration-150 z-50 relative"
               >
                 <span className="text-xs font-medium">{item.title}</span>
-                <div className="h-10 w-10 rounded-full bg-neutral-800 border border-neutral-700 flex items-center justify-center text-neutral-300">
+                <div className="h-10 w-10 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-md flex items-center justify-center text-neutral-300" aria-hidden="true">
                   {item.icon}
                 </div>
               </motion.a>
@@ -188,10 +200,12 @@ const FloatingDockMobile = ({
       <button
         onClick={() => setOpen(!open)}
         aria-label={open ? "关闭导航菜单" : "打开导航菜单"}
-        className="h-12 w-12 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-200 shadow-2xl hover:bg-neutral-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/80 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950"
+        className="h-12 w-12 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-lg text-neutral-200 shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:bg-white/[0.08] flex items-center justify-center transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/80 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 z-50 relative"
       >
         {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
       </button>
     </div>
   );
 };
+
+
