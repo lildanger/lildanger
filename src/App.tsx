@@ -118,7 +118,7 @@ const BaguaIcon = ({ className }: { className?: string }) => {
   );
 };
 
-const WORDS = ["全栈软件开发者", "独立音乐制作人", "音频 DSP 探索者", "模拟电路极客"];
+const WORDS = ["我是全栈软件开发者", "我是独立音乐制作人", "我是音频 DSP 探索者", "我是模拟电路极客"];
 
 export default function App() {
   // 鼠标追踪状态
@@ -297,7 +297,7 @@ export default function App() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col items-center justify-center text-center px-4 max-w-4xl"
+            className="flex flex-col items-center justify-center text-center px-4 w-full max-w-4xl"
           >
             {/* 液态玻璃头像 */}
             <GlassAvatar />
@@ -318,26 +318,20 @@ export default function App() {
               蛋卷
             </h2>
 
-            {/* 独立角色名字轮播徽章 */}
-            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 text-lg sm:text-xl text-neutral-300 font-light h-12">
-              <span>我是</span>
-              <GlassBadge
-                variant="outline"
-                className="min-w-[15rem] h-10 px-4 py-2 flex items-center justify-center rounded-xl bg-white/[0.04] border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.2)] text-neutral-200 font-semibold text-center shrink-0 overflow-hidden"
-              >
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={currentRole}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="inline-block bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent"
-                  >
-                    {currentRole}
-                  </motion.span>
-                </AnimatePresence>
-              </GlassBadge>
+            {/* 独立角色名字纯文字轮播 */}
+            <div className="mt-8 flex items-center justify-center text-lg sm:text-xl text-neutral-300 font-light h-10 select-none overflow-hidden relative w-full text-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentRole}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  className="font-semibold text-cyan-400 text-center w-full"
+                >
+                  {currentRole}
+                </motion.div>
+              </AnimatePresence>
             </div>
 
             <p className="mt-4 text-sm sm:text-base text-neutral-400 max-w-2xl font-light leading-relaxed">
