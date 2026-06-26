@@ -13,7 +13,7 @@ import {
   Radio,
 } from "lucide-react";
 import { AuroraBackground } from "@/components/ui/aurora-background";
-import { HoverEffect } from "@/components/ui/card-hover-effect";
+import { HoverEffect, Card } from "@/components/ui/card-hover-effect";
 import { FloatingDock } from "@/components/ui/floating-dock";
 import { GlassAvatar } from "@/components/ui/glass-avatar";
 import { GlassBadge } from "@/components/ui/glass-badge";
@@ -121,19 +121,6 @@ const BaguaIcon = ({ className }: { className?: string }) => {
 const WORDS = ["我是全栈软件开发者", "我是独立音乐制作人", "我是音频 DSP 探索者", "我是模拟电路极客"];
 
 export default function App() {
-  // 鼠标追踪状态
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
   // 项目与网站数据
   const projects = [
     {
@@ -263,6 +250,61 @@ export default function App() {
     },
   ];
 
+  // 业务合作报价单数据
+  const pricingCards = [
+    {
+      title: "音乐编曲与制作",
+      price: "¥ 6000",
+      unit: "起 / 首",
+      note: "商业授权",
+      icon: <Music className="h-6 w-6 text-amber-400" />,
+      features: [
+        "独立游戏主题曲与场景配乐定制",
+        "出版级说唱 (Hip-Hop) 伴奏定制",
+        "流行与电音等多种风格 Beat 编写",
+        "品牌与商业广告定制配乐作曲",
+      ],
+    },
+    {
+      title: "分轨混音",
+      price: "¥ 100",
+      unit: "起 / 轨",
+      note: "功能轨整合计费",
+      icon: <Sliders className="h-6 w-6 text-amber-400" />,
+      features: [
+        "按轨道功能属性整合计费 (极致性价比)",
+        "同角色多轨人声 (如 Vox 1/2/3) 仅算一轨",
+        "人声与伴奏精细对齐、音修 (Melodyne)",
+        "模拟染色与动态精细雕琢，免费赠送母带",
+      ],
+    },
+    {
+      title: "声音设计与音效",
+      price: "¥ 150",
+      unit: "起 / 个",
+      note: "整案特惠",
+      icon: <Radio className="h-6 w-6 text-amber-400" />,
+      features: [
+        "独立游戏全站音效与环境音定制",
+        "交互式音频系统设计 (FMOD / Wwise)",
+        "硬核独创合成器与物理拟音拟真",
+        "游戏音频资源整包优化与平台适配",
+      ],
+    },
+    {
+      title: "全栈开发",
+      price: "按需定制",
+      note: "提供免费方案评估",
+      icon: <Cpu className="h-6 w-6 text-amber-400" />,
+      features: [
+        "音频 DSP 算法设计与 C++/JS 编写",
+        "定制化 VST / VST3 / AU 插件开发",
+        "高性能 React / TS 全栈软件外包",
+        "合成器模拟电路仿真与 PCB 咨询",
+      ],
+    },
+  ];
+
   const [currentRole, setCurrentRole] = useState(WORDS[0]);
 
   // 自动轮播当前角色定位
@@ -281,14 +323,6 @@ export default function App() {
     <div className="relative min-h-screen bg-black font-sans antialiased text-neutral-200 selection:bg-amber-500/30 selection:text-amber-200">
       {/* 背景网格纹理 */}
       <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808005_1px,transparent_1px),linear-gradient(to_bottom,#80808005_1px,transparent_1px)] bg-[size:28px_28px] pointer-events-none"></div>
-
-      {/* 鼠标轨迹微光效果 */}
-      <div
-        className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y}px, rgba(245, 158, 11, 0.07), rgba(120, 53, 15, 0.03), transparent 80%)`,
-        }}
-      />
 
       {/* Hero Section - 极光背景包裹，移动端采用自适应高度与内边距以保证紧凑 */}
       <section id="home" className="relative w-full">
@@ -449,31 +483,72 @@ export default function App() {
           </p>
         </div>
 
+        {/* 业务合作报价单 (高级液态玻璃排版 - 四列自适应) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mt-6 mb-10 text-left relative z-20">
+          {pricingCards.map((card) => (
+            <Card key={card.title} className="p-4 flex flex-col justify-between border-amber-500/10 hover:border-amber-500/25 transition-all duration-300">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="text-amber-400 shrink-0">
+                    {card.icon}
+                  </div>
+                  <h3 className="text-zinc-100 font-bold text-xs sm:text-sm md:text-base tracking-wide">
+                    {card.title}
+                  </h3>
+                </div>
+                <div className="mb-3 pt-0.5 flex items-baseline gap-1.5 flex-wrap">
+                  <span className="text-amber-400 font-bold font-sans text-xl md:text-2xl tracking-tight">
+                    {card.price}
+                  </span>
+                  {card.unit && (
+                    <span className="text-zinc-400 text-[10px] md:text-xs font-light whitespace-nowrap">
+                      {card.unit}
+                    </span>
+                  )}
+                  {card.note && (
+                    <span className="text-amber-400/80 text-[10px] bg-amber-500/[0.05] border border-amber-500/10 px-1.5 py-0.5 rounded font-mono scale-95 origin-left">
+                      {card.note}
+                    </span>
+                  )}
+                </div>
+                <ul className="space-y-1.5 text-[11px] md:text-xs text-zinc-400 font-light border-t border-amber-500/10 pt-3">
+                  {card.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-1.5">
+                      <span className="text-amber-400/60 shrink-0 mt-0.5">•</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Card>
+          ))}
+        </div>
+
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 font-mono text-sm">
           <GlassButton
             asChild
-            variant="primary"
+            variant="brushed-gold"
             size="lg"
-            glowEffect={true}
+            glowEffect={false}
             className="w-full sm:w-auto"
           >
-            <a href="mailto:danger0498009@gmail.com" className="flex items-center gap-2 text-white">
-              <Mail className="h-4 w-4 text-amber-100" aria-hidden="true" />
+            <a href="mailto:danger0498009@gmail.com" className="flex items-center gap-2 text-neutral-950">
+              <Mail className="h-4 w-4 text-neutral-950" aria-hidden="true" />
               发送电子邮件 (Mail)
             </a>
           </GlassButton>
           <GlassButton
             asChild
-            variant="default"
+            variant="brushed-black-gold"
             size="lg"
-            glowEffect={true}
+            glowEffect={false}
             className="w-full sm:w-auto"
           >
             <a
               href="https://github.com/lildanger"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-white"
+              className="flex items-center gap-2 text-amber-200"
             >
               <GithubIcon className="h-4 w-4 text-amber-300" />
               关注 GitHub 账号
@@ -484,12 +559,12 @@ export default function App() {
 
       {/* Footer */}
       <footer className="py-12 text-center text-xs text-neutral-600 font-mono border-t border-neutral-950 pb-24 md:pb-28">
-        <p>© {new Date().getFullYear()} 党俊源 (蛋卷). Built with Vite, React & Framer Motion.</p>
+        <p>© {new Date().getFullYear()} LILDANGER. Built with Vite, React & Framer Motion.</p>
         <p className="mt-1 text-[10px] text-neutral-700">Code with beat, drum, and science.</p>
       </footer>
 
-      {/* Bottom Floating Navigation Dock */}
-      <div className="fixed bottom-[calc(1.5rem+env(safe-area-inset-bottom))] md:bottom-8 left-1/2 -translate-x-1/2 z-50 px-4 w-full md:w-auto flex justify-center">
+      {/* Top Left Floating Navigation Dock */}
+      <div className="fixed top-6 left-6 z-50">
         <FloatingDock items={dockItems} />
       </div>
     </div>

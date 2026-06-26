@@ -50,7 +50,7 @@ export const GlassAvatar = ({
         <div
           className={cn(
             "relative overflow-hidden border-2 border-amber-500/40 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)]",
-            "backdrop-blur-md bg-neutral-950/40 select-none",
+            "backdrop-blur-md bg-brushed-black-gold select-none",
             "animate-liquid-morph transition-colors duration-500 group-hover:border-amber-400/70",
             size
           )}

@@ -12,12 +12,12 @@ const glassBadgeVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-neutral-950/40 border-amber-500/15 text-neutral-200",
-        primary: cn("bg-linear-to-r from-amber-500/20 to-yellow-500/20", "border-amber-400/30 text-amber-100"),
+        default: "bg-brushed-black-gold border border-amber-500/20 text-neutral-200",
+        primary: "bg-brushed-gold border border-amber-400/40 text-neutral-950 font-bold",
         success: cn("bg-emerald-500/20 border-emerald-400/30 text-emerald-100"),
         warning: cn("bg-amber-500/20 border-amber-400/30 text-amber-100"),
         destructive: cn("bg-red-500/20 border-red-400/30 text-red-100"),
-        outline: "bg-transparent border-amber-500/20 text-amber-300",
+        outline: "bg-transparent border border-amber-500/30 text-amber-300 font-medium",
       },
       size: {
         sm: "px-2 py-0.5 text-xs",

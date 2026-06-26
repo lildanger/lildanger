@@ -19,11 +19,11 @@ const GlassSelectTrigger = React.forwardRef<
     ref={ref}
     className={cn(
       "flex h-10 w-full items-center justify-between gap-2 rounded-xl px-4 py-2 text-sm",
-      "bg-neutral-950/60 backdrop-blur-xl border border-amber-500/15",
+      "bg-brushed-black-gold backdrop-blur-xl border border-amber-500/20",
       "text-amber-100 placeholder:text-amber-200/40",
-      "shadow-[0_4px_16px_rgba(0,0,0,0.3)]",
+      "shadow-[0_4px_16px_rgba(0,0,0,0.4)]",
       "transition-all duration-300",
-      "focus:outline-none focus:border-amber-400/40 focus:bg-neutral-900/60",
+      "focus:outline-none focus:border-amber-400/40 focus:bg-brushed-black-gold",
       "focus:ring-2 focus:ring-amber-500/30 focus:ring-offset-0",
       "disabled:cursor-not-allowed disabled:opacity-50",
       "[&>span]:line-clamp-1",
@@ -76,8 +76,8 @@ const GlassSelectContent = React.forwardRef<
       ref={ref}
       className={cn(
         "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-xl",
-        "bg-neutral-950/80 backdrop-blur-2xl border border-amber-500/15",
-        "shadow-[0_8px_32px_rgba(0,0,0,0.5)]",
+        "bg-brushed-black-gold backdrop-blur-2xl border border-amber-500/20",
+        "shadow-[0_8px_32px_rgba(0,0,0,0.6)]",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -127,7 +127,7 @@ const GlassSelectItem = React.forwardRef<
     className={cn(
       "relative flex w-full cursor-pointer select-none items-center rounded-lg py-2 pl-8 pr-2 text-sm",
       "text-amber-100/85 outline-none",
-      "focus:bg-amber-500/15 focus:text-amber-100",
+      "focus:bg-brushed-gold focus:text-neutral-950 font-semibold",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       "transition-colors duration-150",
       className,

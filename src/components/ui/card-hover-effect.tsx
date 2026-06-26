@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { GlassCard } from "@/components/ui/glass-card";
@@ -43,7 +43,7 @@ export const HoverEffect = ({
             <AnimatePresence>
               {isHovered && (
                 <motion.span
-                  className="absolute inset-0 h-full w-full bg-amber-500/[0.03] border border-amber-500/20 block rounded-3xl backdrop-blur-xs"
+                  className="absolute inset-0 h-full w-full bg-brushed-gold/10 border border-amber-500/30 block rounded-3xl backdrop-blur-xs"
                   layoutId="hoverBackground"
                   initial={{ opacity: 0 }}
                   animate={{
@@ -95,87 +95,39 @@ export const HoverEffect = ({
   );
 };
 
-export const Meteors = ({ number }: { number?: number }) => {
-  const meteorNumber = number || 12;
-  const [meteorStyles, setMeteorStyles] = useState<Array<React.CSSProperties>>([]);
-
-  useEffect(() => {
-    const styles = [...new Array(meteorNumber)].map(() => ({
-      top: 0,
-      left: Math.floor(Math.random() * 300) - 50 + "px",
-      animationDelay: Math.random() * (0.8 - 0.2) + 0.2 + "s",
-      animationDuration: Math.floor(Math.random() * (8 - 2) + 2) + "s",
-    }));
-    setMeteorStyles(styles);
-  }, [meteorNumber]);
-
-  return (
-    <>
-      {meteorStyles.map((style, idx) => (
-        <span
-          key={"meteor" + idx}
-          className={cn(
-            "animate-meteor absolute top-1/2 left-1/2 h-0.5 w-0.5 rounded-[9999px] bg-amber-400/30 shadow-[0_0_0_1px_#ffffff05] rotate-[215deg]",
-            "before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-[50%] before:w-[50px] before:h-[1px] before:bg-gradient-to-r before:from-amber-400/20 before:to-transparent"
-          )}
-          style={style}
-        />
-      ))}
-    </>
-  );
-};
-
 export const Card = ({
   className,
   children,
-  isHovered = false,
+  isHovered,
 }: {
   className?: string;
   children: React.ReactNode;
   isHovered?: boolean;
 }) => {
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    setCoords({ x, y });
-  };
+  const [hoveredInternal, setHoveredInternal] = useState(false);
+  const activeHover = isHovered !== undefined ? isHovered : hoveredInternal;
 
   return (
     <div
-      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setHoveredInternal(true)}
+      onMouseLeave={() => setHoveredInternal(false)}
       className="h-full w-full"
     >
       <GlassCard
-        glowEffect={isHovered}
+        glowEffect={activeHover}
         className={cn(
-          "p-4 md:p-5 bg-neutral-950/40 border-amber-500/10 group-hover:border-amber-500/30 transition-all duration-500 overflow-hidden relative",
+          "p-4 md:p-5 group-hover:border-amber-400/50 transition-all duration-500 overflow-hidden relative",
           className
         )}
       >
         {/* 常态液态流金质感层 (慢速流动) */}
         <div
-          className="absolute inset-0 bg-gradient-to-tr from-amber-500/[0.03] via-transparent to-yellow-500/[0.01] animate-liquid-morph opacity-60 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0"
+          className="absolute inset-0 bg-gradient-to-tr from-amber-500/[0.02] via-transparent to-yellow-500/[0.005] animate-liquid-morph opacity-45 group-hover:opacity-85 transition-opacity duration-500 pointer-events-none z-0"
           style={{ transform: "scale(1.2)" }}
         />
 
-        {/* 鼠标磁吸液态反射光斑 (由 coords 驱动) */}
-        <div
-          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0"
-          style={{
-            background: `radial-gradient(140px circle at ${coords.x}px ${coords.y}px, rgba(251, 191, 36, 0.09), transparent 80%)`,
-          }}
-        />
-
         {/* 玻璃切面金色扫光层 (Hover 时触发) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/[0.05] to-transparent -translate-x-full group-hover:animate-glass-sheen pointer-events-none z-10" />
-
-        {/* 流星背景 (作为玻璃内的尘埃) */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10 group-hover:opacity-30 transition-opacity duration-500 z-0">
-          <Meteors number={3} />
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/[0.03] to-transparent -translate-x-full group-hover:animate-glass-sheen pointer-events-none z-10" />
 
         <div className="relative z-20 h-full">{children}</div>
       </GlassCard>
