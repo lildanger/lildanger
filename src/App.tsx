@@ -18,6 +18,7 @@ import { FloatingDock } from "@/components/ui/floating-dock";
 import { GlassAvatar } from "@/components/ui/glass-avatar";
 import { GlassBadge } from "@/components/ui/glass-badge";
 import { GlassButton } from "@/components/ui/glass-button";
+import wechatImg from "@/assets/wechat.png";
 
 // 自定义 GitHub 图标 (因为 lucide-react 移除了品牌图标)
 const GithubIcon = ({ className }: { className?: string }) => (
@@ -29,6 +30,19 @@ const GithubIcon = ({ className }: { className?: string }) => (
     aria-hidden="true"
   >
     <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+  </svg>
+);
+
+// 自定义微信图标
+const WechatIcon = ({ className }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    stroke="none"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M8.218 2.062c-4.137 0-7.489 3.013-7.489 6.729 0 2.052 1.02 3.896 2.656 5.176-.192.684-.693 2.457-.743 2.628-.063.22.067.215.228.125.161-.09 2.535-1.547 3.328-2.025.648.163 1.328.252 2.02.252.378 0 .753-.027 1.121-.077-.384-.954-.593-1.986-.593-3.07 0-4.138 3.593-7.49 8.026-7.49.197 0 .393.007.587.021C16.326 4.148 12.595 2.062 8.218 2.062zm-2.88 3.818c.553 0 1.002.449 1.002 1.002 0 .553-.449 1.002-1.002 1.002-.553 0-1.001-.449-1.001-1.002 0-.553.448-1.002 1.001-1.002zm5.759 0c.554 0 1.002.449 1.002 1.002 0 .553-.448 1.002-1.002 1.002-.553 0-1.002-.449-1.002-1.002 0-.553.449-1.002 1.002-1.002zm4.685 4.887c-3.568 0-6.46 2.6-6.46 5.807 0 1.77.88 3.36 2.291 4.466-.165.59-.597 2.119-.64 2.266-.055.19.057.185.196.108.139-.077 2.186-1.334 2.87-1.747.558.14 1.145.218 1.743.218 3.568 0 6.46-2.6 6.46-5.808s-2.892-5.807-6.46-5.807zm-2.477 3.284c.477 0 .863.386.863.863 0 .476-.386.863-.863.863-.476 0-.863-.387-.863-.863 0-.477.387-.863.863-.863zm4.954 0c.476 0 .863.386.863.863 0 .476-.387.863-.863.863-.477 0-.863-.387-.863-.863 0-.477.386-.863.863-.863z" />
   </svg>
 );
 
@@ -306,6 +320,7 @@ export default function App() {
   ];
 
   const [currentRole, setCurrentRole] = useState(WORDS[0]);
+  const [showWechatModal, setShowWechatModal] = useState(false);
 
   // 自动轮播当前角色定位
   useEffect(() => {
@@ -526,6 +541,16 @@ export default function App() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 font-mono text-sm">
           <GlassButton
+            variant="brushed-green"
+            size="lg"
+            glowEffect={false}
+            className="w-full sm:w-auto"
+            onClick={() => setShowWechatModal(true)}
+          >
+            <WechatIcon className="h-4 w-4 text-neutral-950" />
+            WeChat
+          </GlassButton>
+          <GlassButton
             asChild
             variant="brushed-gold"
             size="lg"
@@ -534,7 +559,7 @@ export default function App() {
           >
             <a href="mailto:danger0498009@gmail.com" className="flex items-center gap-2 text-neutral-950">
               <Mail className="h-4 w-4 text-neutral-950" aria-hidden="true" />
-              发送电子邮件 (Mail)
+              E-Mail
             </a>
           </GlassButton>
           <GlassButton
@@ -551,7 +576,7 @@ export default function App() {
               className="flex items-center gap-2 text-amber-200"
             >
               <GithubIcon className="h-4 w-4 text-amber-300" />
-              关注 GitHub 账号
+              GitHub
             </a>
           </GlassButton>
         </div>
@@ -567,6 +592,61 @@ export default function App() {
       <div className="fixed top-6 left-6 z-50">
         <FloatingDock items={dockItems} />
       </div>
+
+      {/* 微信二维码 Modal 弹窗 */}
+      <AnimatePresence>
+        {showWechatModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* 半透明毛玻璃背景遮罩 */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowWechatModal(false)}
+              className="absolute inset-0 bg-black/80 backdrop-blur-md cursor-pointer"
+            />
+
+            {/* 弹窗主体 */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="relative z-10 w-full max-w-sm overflow-hidden rounded-2xl border border-amber-500/20 bg-brushed-black-gold p-6 text-center shadow-[0_8px_32px_rgba(0,0,0,0.8)]"
+            >
+              {/* 金色发光背景光晕 */}
+              <div className="absolute -inset-10 rounded-full bg-amber-500/5 blur-3xl pointer-events-none" />
+
+              {/* 头部信息 */}
+              <div className="flex flex-col items-center gap-2 mb-4 relative z-10">
+                <div className="h-10 w-10 rounded-xl bg-green-500/10 border border-green-500/25 flex items-center justify-center text-green-400">
+                  <WechatIcon className="h-6 w-6 text-green-400" />
+                </div>
+                <h3 className="text-lg font-bold text-white tracking-wide">微信扫码联系我</h3>
+                <p className="text-xs text-amber-200/60 font-mono">Scan QR Code to Add WeChat</p>
+              </div>
+
+              {/* 二维码图片容器 */}
+              <div className="relative z-10 mx-auto aspect-square w-64 overflow-hidden rounded-xl border border-amber-500/10 bg-black/40 p-2 shadow-inner">
+                <img
+                  src={wechatImg}
+                  alt="微信二维码"
+                  className="h-full w-full object-contain rounded-lg select-none"
+                  draggable={false}
+                />
+              </div>
+
+              {/* 关闭按钮 */}
+              <button
+                onClick={() => setShowWechatModal(false)}
+                className="mt-6 w-full rounded-xl border border-amber-500/20 bg-amber-500/5 py-2.5 font-mono text-xs font-semibold text-amber-200 transition-all hover:bg-amber-500/15 hover:border-amber-400/40 active:scale-95 cursor-pointer"
+              >
+                CLOSE
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

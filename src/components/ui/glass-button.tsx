@@ -46,6 +46,7 @@ const glassButtonVariants = cva(
         ),
         "brushed-gold": "bg-brushed-gold border border-amber-400/40 text-neutral-950 font-bold shadow-[0_2px_8px_rgba(0,0,0,0.4)] hover:brightness-110",
         "brushed-black-gold": "bg-brushed-black-gold border border-amber-500/30 text-amber-200 shadow-[0_2px_8px_rgba(0,0,0,0.5)] hover:border-amber-400/50 hover:text-amber-100",
+        "brushed-green": "bg-brushed-green border border-green-500/40 text-neutral-950 font-bold shadow-[0_2px_8px_rgba(0,0,0,0.4)] hover:brightness-110",
       },
       size: {
         default: "h-10 px-4 py-2",

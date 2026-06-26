@@ -97,3 +97,10 @@ html {
   background-blend-mode: overlay;
 }
 
+@utility bg-brushed-green {
+  background-image: 
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.06) 0px, rgba(255, 255, 255, 0.06) 1px, transparent 1px, transparent 3px),
+    linear-gradient(to right, #047857 0%, #07c160 30%, #2ae083 50%, #06a150 70%, #024f26 100%);
+  background-blend-mode: overlay;
+}
+
