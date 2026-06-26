@@ -16,23 +16,45 @@ export const AuroraBackground = ({
   return (
     <div
       className={cn(
-        "relative flex flex-col h-[100vh] items-center justify-center bg-zinc-950 text-slate-100 transition-colors duration-300",
+        "relative flex flex-col h-[100vh] items-center justify-center bg-black text-slate-100 transition-colors duration-300",
         className
       )}
       {...props}
     >
+      {/* SVG 液态扭曲滤镜 */}
+      <svg className="hidden" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="liquid-gold-filter">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.008"
+              numOctaves="3"
+              result="noise"
+              seed="2"
+            />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="noise"
+              scale="60"
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+          </filter>
+        </defs>
+      </svg>
+
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
           className={cn(
             `
             [--white-gradient:repeating-linear-gradient(100deg,#fff_0%,#fff_7%,transparent_10%,transparent_12%,#fff_16%)]
             [--dark-gradient:repeating-linear-gradient(100deg,#000_0%,#000_7%,transparent_10%,transparent_12%,#000_16%)]
-            [--aurora:repeating-linear-gradient(100deg,#3b82f6_10%,#a855f7_15%,#14b8a6_20%,#f43f5e_25%,#3b82f6_30%)]
+            [--aurora:repeating-linear-gradient(100deg,#1c1917_10%,#78350f_15%,#b45309_20%,#d97706_25%,#fbbf24_30%,#d97706_35%,#78350f_40%)]
             [background-image:var(--dark-gradient),var(--aurora)]
             [background-size:300%,_200%]
             [background-position:50%_50%,_50%_50%]
-            filter blur-[50px] contrast-[1.25]
-            absolute -inset-[10px] opacity-60 will-change-transform animate-aurora
+            [filter:url(#liquid-gold-filter)_blur(50px)_contrast(1.3)]
+            absolute -inset-[20px] opacity-75 will-change-transform animate-aurora
             after:content-[""] after:absolute after:inset-0
             after:[background-image:var(--dark-gradient),var(--aurora)]
             after:[background-size:200%,_100%] 

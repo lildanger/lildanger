@@ -37,11 +37,11 @@ export const GlassAvatar = ({
         whileTap={{ scale: 0.96 }}
         className="relative group cursor-pointer"
       >
-        {/* 2. 背景霓虹渐变发光环 (旋转 + 呼吸微缩放) */}
+        {/* 2. 背景金色霓虹渐变发光环 (旋转 + 呼吸微缩放) */}
         <div
           className={cn(
             "absolute -inset-2.5 rounded-full blur-xl opacity-60 group-hover:opacity-85 transition-opacity duration-500",
-            "bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500",
+            "bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-300",
             "animate-rotate-gradient pointer-events-none"
           )}
         />
@@ -49,9 +49,9 @@ export const GlassAvatar = ({
         {/* 3. 液态流态形状裁剪层 (Liquid Morph + Glass border) */}
         <div
           className={cn(
-            "relative overflow-hidden border-2 border-white/40 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]",
+            "relative overflow-hidden border-2 border-amber-500/40 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)]",
             "backdrop-blur-md bg-neutral-950/40 select-none",
-            "animate-liquid-morph transition-colors duration-500 group-hover:border-white/60",
+            "animate-liquid-morph transition-colors duration-500 group-hover:border-amber-400/70",
             size
           )}
         >
@@ -64,7 +64,7 @@ export const GlassAvatar = ({
               className="w-full h-full object-cover select-none pointer-events-none scale-105 group-hover:scale-110 transition-transform duration-700"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-tr from-cyan-950/60 to-purple-950/60 text-white font-bold text-3xl font-mono">
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-tr from-amber-950/60 to-yellow-950/60 text-amber-200 font-bold text-3xl font-mono">
               党
             </div>
           )}
@@ -73,13 +73,13 @@ export const GlassAvatar = ({
           <div
             className={cn(
               "absolute inset-0 w-[200%] h-full pointer-events-none z-10",
-              "bg-gradient-to-r from-transparent via-white/20 to-transparent",
+              "bg-gradient-to-r from-transparent via-amber-400/15 to-transparent",
               "animate-glass-sheen"
             )}
           />
 
           {/* 6. 悬停暗色微渐变层 */}
-          <div className="absolute inset-0 bg-cyan-500/0 group-hover:bg-cyan-500/5 transition-colors duration-500 pointer-events-none" />
+          <div className="absolute inset-0 bg-amber-500/0 group-hover:bg-amber-500/5 transition-colors duration-500 pointer-events-none" />
         </div>
       </motion.div>
     </motion.div>

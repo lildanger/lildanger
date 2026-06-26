@@ -24,7 +24,7 @@ export const HoverEffect = ({
   return (
     <div
       className={cn(
-        "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-6 gap-6",
+        "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 py-4 md:py-6 gap-4 md:gap-6",
         className
       )}
     >
@@ -34,7 +34,7 @@ export const HoverEffect = ({
           <a
             href={item.link}
             key={item.link}
-            className="relative group block p-1 h-full w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/80 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 rounded-3xl transition-shadow duration-150"
+            className="relative group block p-0.5 h-full w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/80 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 rounded-3xl transition-shadow duration-150"
             onMouseEnter={() => setHoveredIndex(idx)}
             onMouseLeave={() => setHoveredIndex(null)}
             target={item.link.startsWith("http") ? "_blank" : undefined}
@@ -43,7 +43,7 @@ export const HoverEffect = ({
             <AnimatePresence>
               {isHovered && (
                 <motion.span
-                  className="absolute inset-0 h-full w-full bg-cyan-500/[0.02] border border-cyan-500/10 block rounded-3xl backdrop-blur-xs"
+                  className="absolute inset-0 h-full w-full bg-amber-500/[0.03] border border-amber-500/20 block rounded-3xl backdrop-blur-xs"
                   layoutId="hoverBackground"
                   initial={{ opacity: 0 }}
                   animate={{
@@ -60,22 +60,26 @@ export const HoverEffect = ({
             <Card isHovered={isHovered}>
               <div className="flex flex-col justify-between h-full">
                 <div>
-                  {item.icon && (
-                    <div className="text-neutral-400 group-hover:text-cyan-400 transition-colors duration-300 text-2xl">
-                      {item.icon}
-                    </div>
-                  )}
-                  <CardTitle>{item.title}</CardTitle>
-                  <CardDescription>{item.description}</CardDescription>
+                  <div className="flex items-center gap-2.5 mb-2">
+                    {item.icon && (
+                      <div className="text-amber-500/85 group-hover:text-amber-400 transition-colors duration-300 text-xl md:text-2xl group-hover:drop-shadow-[0_0_8px_rgba(251,191,36,0.35)] shrink-0">
+                        {item.icon}
+                      </div>
+                    )}
+                    <CardTitle className="mt-0 text-sm sm:text-base md:text-lg">{item.title}</CardTitle>
+                  </div>
+                  <CardDescription className="text-[11px] md:text-xs leading-normal md:leading-relaxed">
+                    {item.description}
+                  </CardDescription>
                 </div>
                 {item.tags && (
-                  <div className="flex flex-wrap gap-1.5 mt-4 pt-3 border-t border-white/10">
+                  <div className="flex flex-wrap gap-1 mt-3 pt-2 border-t border-amber-500/10">
                     {item.tags.map((tag) => (
                       <GlassBadge
                         key={tag}
                         variant="outline"
                         size="sm"
-                        className="text-[10px] uppercase font-mono tracking-wider border-white/10 text-neutral-300 bg-white/[0.02] hover:bg-white/[0.06] transition-colors"
+                        className="text-[9px] md:text-[10px] px-1.5 py-0.5 uppercase font-mono tracking-wider border-amber-500/10 text-amber-300/80 bg-amber-500/[0.02] hover:bg-amber-500/[0.08] transition-colors"
                       >
                         {tag}
                       </GlassBadge>
@@ -111,8 +115,8 @@ export const Meteors = ({ number }: { number?: number }) => {
         <span
           key={"meteor" + idx}
           className={cn(
-            "animate-meteor absolute top-1/2 left-1/2 h-0.5 w-0.5 rounded-[9999px] bg-cyan-400/30 shadow-[0_0_0_1px_#ffffff05] rotate-[215deg]",
-            "before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-[50%] before:w-[50px] before:h-[1px] before:bg-gradient-to-r before:from-cyan-400/20 before:to-transparent"
+            "animate-meteor absolute top-1/2 left-1/2 h-0.5 w-0.5 rounded-[9999px] bg-amber-400/30 shadow-[0_0_0_1px_#ffffff05] rotate-[215deg]",
+            "before:content-[''] before:absolute before:top-1/2 before:transform before:-translate-y-[50%] before:w-[50px] before:h-[1px] before:bg-gradient-to-r before:from-amber-400/20 before:to-transparent"
           )}
           style={style}
         />
@@ -130,24 +134,52 @@ export const Card = ({
   children: React.ReactNode;
   isHovered?: boolean;
 }) => {
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    setCoords({ x, y });
+  };
+
   return (
-    <GlassCard
-      glowEffect={isHovered}
-      className={cn(
-        "p-5 bg-white/[0.03] border-white/10 group-hover:border-white/20 transition-all duration-500 overflow-hidden relative",
-        className
-      )}
+    <div
+      onMouseMove={handleMouseMove}
+      className="h-full w-full"
     >
-      {/* 玻璃切面高光掠光层 */}
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent -translate-x-full group-hover:animate-glass-sheen pointer-events-none z-10" />
+      <GlassCard
+        glowEffect={isHovered}
+        className={cn(
+          "p-4 md:p-5 bg-neutral-950/40 border-amber-500/10 group-hover:border-amber-500/30 transition-all duration-500 overflow-hidden relative",
+          className
+        )}
+      >
+        {/* 常态液态流金质感层 (慢速流动) */}
+        <div
+          className="absolute inset-0 bg-gradient-to-tr from-amber-500/[0.03] via-transparent to-yellow-500/[0.01] animate-liquid-morph opacity-60 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0"
+          style={{ transform: "scale(1.2)" }}
+        />
 
-      {/* 流星背景 (作为玻璃内的尘埃，透明度下调为 10% 并在 hover 时亮起) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10 group-hover:opacity-25 transition-opacity duration-500">
-        <Meteors number={4} />
-      </div>
+        {/* 鼠标磁吸液态反射光斑 (由 coords 驱动) */}
+        <div
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0"
+          style={{
+            background: `radial-gradient(140px circle at ${coords.x}px ${coords.y}px, rgba(251, 191, 36, 0.09), transparent 80%)`,
+          }}
+        />
 
-      <div className="relative z-20 h-full">{children}</div>
-    </GlassCard>
+        {/* 玻璃切面金色扫光层 (Hover 时触发) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/[0.05] to-transparent -translate-x-full group-hover:animate-glass-sheen pointer-events-none z-10" />
+
+        {/* 流星背景 (作为玻璃内的尘埃) */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10 group-hover:opacity-30 transition-opacity duration-500 z-0">
+          <Meteors number={3} />
+        </div>
+
+        <div className="relative z-20 h-full">{children}</div>
+      </GlassCard>
+    </div>
   );
 };
 
@@ -161,7 +193,7 @@ export const CardTitle = ({
   return (
     <h3
       className={cn(
-        "text-zinc-100 font-bold tracking-wide mt-2 text-lg group-hover:text-cyan-300 transition-colors duration-300",
+        "text-zinc-100 font-bold tracking-wide mt-2 text-lg group-hover:text-amber-300 transition-colors duration-300",
         className
       )}
     >
@@ -188,4 +220,3 @@ export const CardDescription = ({
     </p>
   );
 };
-

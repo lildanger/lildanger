@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --animate-aurora: aurora 60s linear infinite;
+  --animate-aurora: aurora 35s linear infinite;
   --animate-meteor: meteor 5s linear infinite;
   --animate-liquid-morph: liquid-morph 8s ease-in-out infinite;
   --animate-rotate-gradient: rotate-gradient 12s linear infinite;

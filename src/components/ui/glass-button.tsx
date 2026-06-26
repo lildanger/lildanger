@@ -18,25 +18,25 @@ const glassButtonVariants = cva(
     variants: {
       variant: {
         default: cn(
-          "bg-white/20 backdrop-blur-xl border border-white/30 text-white",
-          "shadow-[0_4px_16px_rgba(0,0,0,0.2)]",
-          "hover:bg-white/30 hover:border-white/40",
+          "bg-amber-500/10 backdrop-blur-xl border border-amber-500/35 text-amber-100",
+          "shadow-[0_4px_16px_rgba(0,0,0,0.3)]",
+          "hover:bg-amber-500/20 hover:border-amber-400/50",
           "before:absolute before:inset-0 before:rounded-xl",
-          "before:bg-linear-to-b before:from-white/20 before:to-transparent before:pointer-events-none",
+          "before:bg-linear-to-b before:from-amber-400/10 before:to-transparent before:pointer-events-none",
         ),
         primary: cn(
-          "bg-linear-to-r from-cyan-500/80 via-blue-500/80 to-purple-500/80",
-          "backdrop-blur-xl border border-white/30 text-white",
-          "shadow-[0_4px_20px_rgba(59,130,246,0.4)]",
-          "hover:shadow-[0_4px_30px_rgba(59,130,246,0.6)]",
+          "bg-linear-to-r from-amber-600 via-yellow-500 to-amber-500",
+          "backdrop-blur-xl border border-amber-400/30 text-white",
+          "shadow-[0_4px_20px_rgba(245,158,11,0.4)]",
+          "hover:shadow-[0_4px_30px_rgba(245,158,11,0.6)]",
           "before:absolute before:inset-0 before:rounded-xl",
-          "before:bg-linear-to-b before:from-white/30 before:to-transparent before:pointer-events-none",
+          "before:bg-linear-to-b before:from-amber-300/30 before:to-transparent before:pointer-events-none",
         ),
         outline: cn(
-          "bg-transparent backdrop-blur-sm border-2 border-white/40 text-white",
-          "hover:bg-white/10 hover:border-white/60",
+          "bg-transparent backdrop-blur-sm border-2 border-amber-500/40 text-amber-200",
+          "hover:bg-amber-500/10 hover:border-amber-400/60",
         ),
-        ghost: cn("bg-transparent text-white/70", "hover:bg-white/10 hover:text-white"),
+        ghost: cn("bg-transparent text-amber-300/70", "hover:bg-amber-500/10 hover:text-amber-200"),
         destructive: cn(
           "bg-red-500/30 backdrop-blur-xl border border-red-400/40 text-red-100",
           "shadow-[0_4px_16px_rgba(239,68,68,0.3)]",
@@ -72,7 +72,7 @@ const GlassButton = React.forwardRef<HTMLButtonElement, GlassButtonProps>(
     return (
       <div className="relative inline-block">
         {glowEffect && (
-          <div className="absolute -inset-1 rounded-xl bg-white/8 blur-lg opacity-40 transition-opacity group-hover:opacity-60 pointer-events-none" />
+          <div className="absolute -inset-1 rounded-xl bg-amber-500/8 blur-lg opacity-40 transition-opacity group-hover:opacity-60 pointer-events-none" />
         )}
         <Comp className={cn(glassButtonVariants({ variant, size, className }))} ref={ref} {...props}>
           <span className="relative z-10 flex items-center gap-2">{children}</span>

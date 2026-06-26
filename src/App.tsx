@@ -147,28 +147,28 @@ export default function App() {
       title: "在线起卦",
       description: "用 React + TypeScript 将传统《易经》与现代网页交互深度融合。提供数字、铜钱与时间起卦排盘，简洁优雅的数字玄学交互。",
       link: "https://qigua.fuckrapper.online/",
-      icon: <BaguaIcon className="h-8 w-8 text-purple-400" />,
+      icon: <BaguaIcon className="h-8 w-8 text-amber-400" />,
       tags: ["React / TS", "Zhouyi Divination", "Web App", "I Ching"],
     },
     {
       title: "边境开拓者 (Border Pioneer)",
-      description: "在 Steam 发售的独立经营游戏，荣登 2025 年国产生态独立游戏销量前十。我负责了游戏内完整的音乐制作、音效制作与声音设计，编写了部分音频触发逻辑与彩蛋代码，并独立完成了 Linux 与 macOS 的平台适配移植与 QA 。",
+      description: "在 Steam 发售的独立经营游戏，荣登 2025 年国产生态独立游戏销量前十。我负责了游戏内完整的音乐制作、音效制作与声音设计，编写了部分音频触发 logic 与彩蛋代码，并独立完成了 Linux 与 macOS 的平台适配移植与 QA 。",
       link: "https://store.steampowered.com/app/2346410/Border_Pioneer/",
-      icon: <Gamepad2 className="h-8 w-8 text-emerald-400" />,
+      icon: <Gamepad2 className="h-8 w-8 text-amber-400" />,
       tags: ["2025 销量前十", "音乐与音效制作", "Game Audio", "Linux & Mac QA"],
     },
     {
       title: "网易云音乐人 (蛋卷)",
       description: "独立音乐人，积累 18,000+ 粉丝，参与制作歌曲全网播放量达 2 亿+次。为圣代（《Welcome 2 my HOOD》）、JR FOG（《肥宅水》）、木秦等说唱歌手与艺人提供高水准编曲与混音。",
       link: "https://music.163.com/#/artist?id=1079143",
-      icon: <Music className="h-8 w-8 text-rose-400" />,
-      tags: ["200M+ Streams", "Sheng Dai (圣代)", "Beatmaking / Mixing", "Hip-hop / EDM"],
+      icon: <Music className="h-8 w-8 text-amber-400" />,
+      tags: ["2亿+播放", "1.8万+粉丝", "编曲 / 混音", "母带", "声学处理", "现场PA", "调音"],
     },
     {
       title: "Bilibili频道",
       description: "分享游戏音频设计、编曲幕后、DSP 算法以及硬件模拟合成器电路仿真。用硬核技术与律动连接极客与乐迷。",
       link: "https://space.bilibili.com/2727",
-      icon: <Tv className="h-8 w-8 text-cyan-400" />,
+      icon: <Tv className="h-8 w-8 text-amber-400" />,
       tags: ["Vlog", "Tutorials", "Audio Tech", "Hardware Synths"],
     },
   ];
@@ -179,14 +179,14 @@ export default function App() {
       title: "数字信号处理 (DSP) 与算法",
       description: "深入音频 DSP 算法、滤波器设计，有 C++/JavaScript 编写 VST/AU 音频插件的开发经验，熟练使用 Pure Data 与 Max 4 Live 进行实时音频和信号数据流的处理。",
       link: "#tech",
-      icon: <Cpu className="h-6 w-6 text-purple-400" />,
+      icon: <Cpu className="h-6 w-6 text-amber-400" />,
       tags: ["DSP", "C++ / JS", "VST Plugins", "Pure Data / Max"],
     },
     {
       title: "混音 & 母带工程 (Mixing & Mastering)",
       description: "10 年独立音乐制作经验，精通 Pro Tools、Ableton Live、FL Studio 等常见宿主软件。提供出版级分轨混音，曾获《中国说唱》第一季音乐制作人组季军。",
       link: "#tech",
-      icon: <Sliders className="h-6 w-6 text-cyan-400" />,
+      icon: <Sliders className="h-6 w-6 text-amber-400" />,
       tags: ["Pro Tools", "EQ & Compression", "Mixing & Mastering", "China Rap 3rd"],
     },
     {
@@ -200,21 +200,21 @@ export default function App() {
       title: "建筑声学与录音棚设计",
       description: "掌握扎实的建筑声学与空间声场反射理论。具备录音棚声学装修与建声设计经验，曾精准定位并解决录音棚中 125Hz 处鼻音过重的驻波难题。",
       link: "#tech",
-      icon: <Layers className="h-6 w-6 text-emerald-400" />,
+      icon: <Layers className="h-6 w-6 text-amber-400" />,
       tags: ["Acoustics", "Room Modes", "Studio Design", "Acoustic Tuning"],
     },
     {
       title: "全栈式编程实力 (Fullstack Developer)",
       description: "毕业于计算机科学与技术专业，具备 10 年以上软件开发和架构经验。擅长将高性能编程技术（C++、Rust、React）与音频物理特性、DSP 算法无缝融合。",
       link: "#tech",
-      icon: <GithubIcon className="h-6 w-6 text-blue-400" />,
+      icon: <GithubIcon className="h-6 w-6 text-amber-400" />,
       tags: ["Computer Science", "C++ / Rust", "React / Web", "Custom Audio Tools"],
     },
     {
       title: "编曲与声音设计 (Arranging & Sound Design)",
       description: "为独立游戏制作沉浸式声景设计和动态音乐伴奏，并为芒果 TV《说唱听我的》、平安保险、爱国者等提供定制化商业广告配乐的作曲及编曲服务。",
       link: "#tech",
-      icon: <Disc className="h-6 w-6 text-rose-400" />,
+      icon: <Disc className="h-6 w-6 text-amber-400" />,
       tags: ["Commercial OST", "Soundscapes", "Beatmaking", "Dynamic Audio"],
     },
   ];
@@ -223,22 +223,22 @@ export default function App() {
   const dockItems = [
     {
       title: "主页",
-      icon: <Home className="h-full w-full text-neutral-300" />,
+      icon: <Home className="h-full w-full text-amber-300" />,
       href: "#home",
     },
     {
       title: "作品/网站",
-      icon: <Gamepad2 className="h-full w-full text-neutral-300" />,
+      icon: <Gamepad2 className="h-full w-full text-amber-300" />,
       href: "#projects",
     },
     {
       title: "技术领域",
-      icon: <Sliders className="h-full w-full text-neutral-300" />,
+      icon: <Sliders className="h-full w-full text-amber-300" />,
       href: "#tech",
     },
     {
       title: "GitHub",
-      icon: <GithubIcon className="h-full w-full text-neutral-300" />,
+      icon: <GithubIcon className="h-full w-full text-amber-300" />,
       href: "https://github.com/lildanger",
     },
     {
@@ -248,17 +248,17 @@ export default function App() {
     },
     {
       title: "周易起卦",
-      icon: <BaguaIcon className="h-full w-full text-purple-400" />,
+      icon: <BaguaIcon className="h-full w-full text-amber-400" />,
       href: "https://qigua.fuckrapper.online/",
     },
     {
       title: "网易云音乐",
-      icon: <Music className="h-full w-full text-rose-400" />,
+      icon: <Music className="h-full w-full text-amber-400" />,
       href: "https://music.163.com/#/artist?id=1079143",
     },
     {
       title: "Bilibili",
-      icon: <Tv className="h-full w-full text-cyan-400" />,
+      icon: <Tv className="h-full w-full text-amber-400" />,
       href: "https://space.bilibili.com/2727",
     },
   ];
@@ -278,48 +278,48 @@ export default function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-neutral-950 font-sans antialiased text-neutral-200 selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div className="relative min-h-screen bg-black font-sans antialiased text-neutral-200 selection:bg-amber-500/30 selection:text-amber-200">
       {/* 背景网格纹理 */}
-      <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:28px_28px] pointer-events-none"></div>
+      <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808005_1px,transparent_1px),linear-gradient(to_bottom,#80808005_1px,transparent_1px)] bg-[size:28px_28px] pointer-events-none"></div>
 
       {/* 鼠标轨迹微光效果 */}
       <div
         className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"
         style={{
-          background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y}px, rgba(14, 165, 233, 0.08), rgba(99, 102, 241, 0.04), transparent 80%)`,
+          background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y}px, rgba(245, 158, 11, 0.07), rgba(120, 53, 15, 0.03), transparent 80%)`,
         }}
       />
 
-      {/* Hero Section - 极光背景包裹 */}
-      <section id="home" className="relative h-screen w-full">
-        <AuroraBackground>
+      {/* Hero Section - 极光背景包裹，移动端采用自适应高度与内边距以保证紧凑 */}
+      <section id="home" className="relative w-full">
+        <AuroraBackground className="h-auto min-h-screen py-12 md:h-[100vh] md:py-0">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="flex flex-col items-center justify-center text-center px-4 w-full max-w-4xl"
           >
-            {/* 液态玻璃头像 */}
-            <GlassAvatar />
+            {/* 液态玻璃头像 (移动端尺寸微调缩紧) */}
+            <GlassAvatar size="w-20 h-20 md:w-28 md:h-28" className="mb-4 md:mb-6" />
             {/* 炫酷的徽章 */}
             <GlassBadge
               variant="primary"
-              className="inline-flex items-center gap-2 mb-6 font-mono text-xs uppercase tracking-widest border-cyan-400/20 bg-cyan-500/[0.05] backdrop-blur-md"
+              className="inline-flex items-center gap-2 mb-4 md:mb-6 font-mono text-xs uppercase tracking-widest border-amber-400/20 bg-amber-500/[0.05] backdrop-blur-md"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
               Half Compiler, Half Drum Machine
             </GlassBadge>
 
             {/* 主标题 */}
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-extrabold tracking-tighter text-white bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-400">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-extrabold tracking-tighter text-white bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-500">
               党俊源
             </h1>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-mono text-neutral-400 mt-2 tracking-widest">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-mono text-neutral-400 mt-1 md:mt-2 tracking-widest">
               蛋卷
             </h2>
 
             {/* 独立角色名字纯文字轮播 */}
-            <div className="mt-8 flex items-center justify-center text-lg sm:text-xl text-neutral-300 font-light h-10 select-none overflow-hidden relative w-full text-center">
+            <div className="mt-4 md:mt-8 flex items-center justify-center text-lg sm:text-xl text-neutral-300 font-light h-10 select-none overflow-hidden relative w-full text-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentRole}
@@ -327,32 +327,32 @@ export default function App() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.35, ease: "easeInOut" }}
-                  className="font-semibold text-cyan-400 text-center w-full"
+                  className="font-semibold text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.35)] text-center w-full"
                 >
                   {currentRole}
                 </motion.div>
               </AnimatePresence>
             </div>
 
-            <p className="mt-4 text-sm sm:text-base text-neutral-400 max-w-2xl font-light leading-relaxed">
+            <p className="mt-3 md:mt-4 text-xs sm:text-sm md:text-base text-neutral-400 max-w-2xl font-light leading-relaxed">
               自幼写下第一行代码，与律动共振十余年。
               在数字世界里，我是全栈开发者与音频 DSP 探索者；在声音的世界里，我是全网 2 亿+播放量的独立音乐人、混音师与游戏音频总监。
               致力于将 C++/Rust、电声电路仿真与硬核 Hip-Hop/EDM 融为一体。
             </p>
 
             {/* 技能标签速览 */}
-            <div className="flex flex-wrap items-center justify-center gap-2.5 mt-8 max-w-xl font-mono">
-              <GlassBadge variant="outline" size="sm" className="bg-white/[0.02] border-white/10 text-neutral-300 hover:bg-white/[0.08] transition-colors">音频 DSP 算法</GlassBadge>
-              <GlassBadge variant="outline" size="sm" className="bg-white/[0.02] border-white/10 text-neutral-300 hover:bg-white/[0.08] transition-colors">独立音乐人/混音</GlassBadge>
-              <GlassBadge variant="outline" size="sm" className="bg-white/[0.02] border-white/10 text-neutral-300 hover:bg-white/[0.08] transition-colors">模拟合成器硬件</GlassBadge>
-              <GlassBadge variant="outline" size="sm" className="bg-white/[0.02] border-white/10 text-neutral-300 hover:bg-white/[0.08] transition-colors">游戏音乐音效</GlassBadge>
-              <GlassBadge variant="outline" size="sm" className="bg-white/[0.02] border-white/10 text-neutral-300 hover:bg-white/[0.08] transition-colors">全栈软件工程</GlassBadge>
+            <div className="flex flex-wrap items-center justify-center gap-1.5 md:gap-2.5 mt-4 md:mt-8 max-w-xl font-mono">
+              <GlassBadge variant="outline" size="sm" className="bg-amber-500/[0.02] border-amber-500/10 text-amber-300/80 hover:bg-amber-500/[0.08] hover:text-amber-200 transition-colors">音频 DSP 算法</GlassBadge>
+              <GlassBadge variant="outline" size="sm" className="bg-amber-500/[0.02] border-amber-500/10 text-amber-300/80 hover:bg-amber-500/[0.08] hover:text-amber-200 transition-colors">独立音乐人/混音</GlassBadge>
+              <GlassBadge variant="outline" size="sm" className="bg-amber-500/[0.02] border-amber-500/10 text-amber-300/80 hover:bg-amber-500/[0.08] hover:text-amber-200 transition-colors">模拟合成器硬件</GlassBadge>
+              <GlassBadge variant="outline" size="sm" className="bg-amber-500/[0.02] border-amber-500/10 text-amber-300/80 hover:bg-amber-500/[0.08] hover:text-amber-200 transition-colors">游戏音乐音效</GlassBadge>
+              <GlassBadge variant="outline" size="sm" className="bg-amber-500/[0.02] border-amber-500/10 text-amber-300/80 hover:bg-amber-500/[0.08] hover:text-amber-200 transition-colors">全栈软件工程</GlassBadge>
             </div>
 
-            {/* 下滑提示 */}
+            {/* 下滑提示 (移动端隐藏以防多余留白) */}
             <a
               href="#projects"
-              className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-neutral-500 font-mono text-[10px] uppercase tracking-widest cursor-pointer select-none hover:text-neutral-300 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/80 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 rounded p-1"
+              className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-neutral-500 font-mono text-[10px] uppercase tracking-widest cursor-pointer select-none hover:text-amber-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/80 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 rounded p-1"
               aria-label="向下滚动探索作品与创建项目"
             >
               <span>Scroll to explore</span>
@@ -366,7 +366,7 @@ export default function App() {
                     duration: 1.5,
                     ease: "easeInOut",
                   }}
-                  className="w-full h-1/2 bg-cyan-500 absolute top-0"
+                  className="w-full h-1/2 bg-amber-500 absolute top-0"
                 ></motion.div>
               </div>
             </a>
@@ -381,11 +381,11 @@ export default function App() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="py-24 px-4 max-w-6xl mx-auto relative z-10"
+        className="py-12 md:py-24 px-4 max-w-6xl mx-auto relative z-10"
       >
-        <div className="flex flex-col items-start gap-2 mb-12">
-          <div className="flex items-center gap-2 font-mono text-xs text-rose-400 uppercase tracking-widest">
-            <Gamepad2 className="h-4 w-4" />
+        <div className="flex flex-col items-start gap-2 mb-6 md:mb-12">
+          <div className="flex items-center gap-2 font-mono text-xs text-amber-500 uppercase tracking-widest">
+            <Gamepad2 className="h-4 w-4 text-amber-400" />
             Works & Creations
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
@@ -406,11 +406,11 @@ export default function App() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="py-24 px-4 max-w-6xl mx-auto relative z-10 border-t border-neutral-900/80"
+        className="py-12 md:py-24 px-4 max-w-6xl mx-auto relative z-10 border-t border-neutral-900/80"
       >
-        <div className="flex flex-col items-start gap-2 mb-12">
-          <div className="flex items-center gap-2 font-mono text-xs text-purple-400 uppercase tracking-widest">
-            <Sliders className="h-4 w-4" />
+        <div className="flex flex-col items-start gap-2 mb-6 md:mb-12">
+          <div className="flex items-center gap-2 font-mono text-xs text-amber-500 uppercase tracking-widest">
+            <Sliders className="h-4 w-4 text-amber-400" />
             Audio Tech & Domain Knowledge
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
@@ -431,14 +431,14 @@ export default function App() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="py-24 px-4 max-w-4xl mx-auto text-center relative z-10 border-t border-neutral-900/80"
+        className="py-12 md:py-24 px-4 max-w-4xl mx-auto text-center relative z-10 border-t border-neutral-900/80"
       >
         <div className="flex flex-col items-center gap-4 mb-8">
           <GlassBadge
             variant="primary"
-            className="inline-flex items-center gap-1.5 px-3 py-1 border-cyan-400/20 bg-cyan-500/[0.05] font-mono text-xs text-cyan-400 uppercase tracking-widest"
+            className="inline-flex items-center gap-1.5 px-3 py-1 border-amber-400/20 bg-amber-500/[0.05] font-mono text-xs text-amber-400 uppercase tracking-widest"
           >
-            <Mail className="h-3 w-3" />
+            <Mail className="h-3 w-3 text-amber-400" />
             Get In Touch
           </GlassBadge>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
@@ -458,7 +458,7 @@ export default function App() {
             className="w-full sm:w-auto"
           >
             <a href="mailto:danger0498009@gmail.com" className="flex items-center gap-2 text-white">
-              <Mail className="h-4 w-4" aria-hidden="true" />
+              <Mail className="h-4 w-4 text-amber-100" aria-hidden="true" />
               发送电子邮件 (Mail)
             </a>
           </GlassButton>
@@ -475,7 +475,7 @@ export default function App() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-white"
             >
-              <GithubIcon className="h-4 w-4 text-purple-300" />
+              <GithubIcon className="h-4 w-4 text-amber-300" />
               关注 GitHub 账号
             </a>
           </GlassButton>
@@ -483,7 +483,7 @@ export default function App() {
       </motion.section>
 
       {/* Footer */}
-      <footer className="py-12 text-center text-xs text-neutral-600 font-mono border-t border-neutral-950 pb-28">
+      <footer className="py-12 text-center text-xs text-neutral-600 font-mono border-t border-neutral-950 pb-24 md:pb-28">
         <p>© {new Date().getFullYear()} 党俊源 (蛋卷). Built with Vite, React & Framer Motion.</p>
         <p className="mt-1 text-[10px] text-neutral-700">Code with beat, drum, and science.</p>
       </footer>
