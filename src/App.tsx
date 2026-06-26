@@ -42,7 +42,7 @@ const WechatIcon = ({ className }: { className?: string }) => (
     className={className}
     aria-hidden="true"
   >
-    <path d="M8.218 2.062c-4.137 0-7.489 3.013-7.489 6.729 0 2.052 1.02 3.896 2.656 5.176-.192.684-.693 2.457-.743 2.628-.063.22.067.215.228.125.161-.09 2.535-1.547 3.328-2.025.648.163 1.328.252 2.02.252.378 0 .753-.027 1.121-.077-.384-.954-.593-1.986-.593-3.07 0-4.138 3.593-7.49 8.026-7.49.197 0 .393.007.587.021C16.326 4.148 12.595 2.062 8.218 2.062zm-2.88 3.818c.553 0 1.002.449 1.002 1.002 0 .553-.449 1.002-1.002 1.002-.553 0-1.001-.449-1.001-1.002 0-.553.448-1.002 1.001-1.002zm5.759 0c.554 0 1.002.449 1.002 1.002 0 .553-.448 1.002-1.002 1.002-.553 0-1.002-.449-1.002-1.002 0-.553.449-1.002 1.002-1.002zm4.685 4.887c-3.568 0-6.46 2.6-6.46 5.807 0 1.77.88 3.36 2.291 4.466-.165.59-.597 2.119-.64 2.266-.055.19.057.185.196.108.139-.077 2.186-1.334 2.87-1.747.558.14 1.145.218 1.743.218 3.568 0 6.46-2.6 6.46-5.808s-2.892-5.807-6.46-5.807zm-2.477 3.284c.477 0 .863.386.863.863 0 .476-.386.863-.863.863-.476 0-.863-.387-.863-.863 0-.477.387-.863.863-.863zm4.954 0c.476 0 .863.386.863.863 0 .476-.387.863-.863.863-.477 0-.863-.387-.863-.863 0-.477.386-.863.863-.863z" />
+    <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-6.656-6.088V8.89c-.135-.01-.27-.027-.407-.03zm-2.53 3.274c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.969-.982z" />
   </svg>
 );
 
@@ -539,12 +539,12 @@ export default function App() {
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 font-mono text-sm">
+        <div className="flex flex-row items-center justify-center gap-3 sm:gap-6 mt-8 font-mono text-sm w-full max-w-md mx-auto px-2">
           <GlassButton
             variant="brushed-green"
             size="lg"
             glowEffect={false}
-            className="w-full sm:w-auto"
+            className="flex-1 sm:flex-none w-auto h-10 sm:h-12 px-3 sm:px-6 text-xs sm:text-base"
             onClick={() => setShowWechatModal(true)}
           >
             <WechatIcon className="h-4 w-4 text-neutral-950" />
@@ -555,7 +555,7 @@ export default function App() {
             variant="brushed-gold"
             size="lg"
             glowEffect={false}
-            className="w-full sm:w-auto"
+            className="flex-1 sm:flex-none w-auto h-10 sm:h-12 px-3 sm:px-6 text-xs sm:text-base"
           >
             <a href="mailto:danger0498009@gmail.com" className="flex items-center gap-2 text-neutral-950">
               <Mail className="h-4 w-4 text-neutral-950" aria-hidden="true" />
@@ -567,7 +567,7 @@ export default function App() {
             variant="brushed-black-gold"
             size="lg"
             glowEffect={false}
-            className="w-full sm:w-auto"
+            className="flex-1 sm:flex-none w-auto h-10 sm:h-12 px-3 sm:px-6 text-xs sm:text-base"
           >
             <a
               href="https://github.com/lildanger"
@@ -596,14 +596,14 @@ export default function App() {
       {/* 微信二维码 Modal 弹窗 */}
       <AnimatePresence>
         {showWechatModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            {/* 半透明毛玻璃背景遮罩 */}
+          <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
+            {/* 半透明背景遮罩 (移除毛玻璃以优化移动端渲染卡顿，并改为 fixed 确保完全覆盖) */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setShowWechatModal(false)}
-              className="absolute inset-0 bg-black/80 backdrop-blur-md cursor-pointer"
+              className="fixed inset-0 bg-black/90 cursor-pointer"
             />
 
             {/* 弹窗主体 */}

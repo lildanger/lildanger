@@ -72,8 +72,10 @@ export interface GlassButtonProps
 const GlassButton = React.forwardRef<HTMLButtonElement, GlassButtonProps>(
   ({ className, variant, asChild = false, size, glowEffect = false, children, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
+    const isWFull = className?.includes("w-full")
+    const isSmWAuto = className?.includes("sm:w-auto")
     return (
-      <div className="relative inline-block">
+      <div className={cn("relative inline-block", isWFull && "w-full", isSmWAuto && "sm:w-auto")}>
         {glowEffect && (
           <div className="absolute -inset-1 rounded-xl bg-amber-500/8 blur-lg opacity-40 transition-opacity group-hover:opacity-60 pointer-events-none" />
         )}
