@@ -28,7 +28,7 @@ export const AuroraBackground = ({
             <feTurbulence
               type="fractalNoise"
               baseFrequency="0.008"
-              numOctaves="3"
+              numOctaves="2"
               result="noise"
               seed="2"
             />
@@ -53,7 +53,8 @@ export const AuroraBackground = ({
             [background-image:var(--dark-gradient),var(--aurora)]
             [background-size:300%,_200%]
             [background-position:50%_50%,_50%_50%]
-            [filter:url(#liquid-gold-filter)_blur(50px)_contrast(1.3)]
+            [filter:blur(50px)_contrast(1.3)]
+            md:[filter:url(#liquid-gold-filter)_blur(50px)_contrast(1.3)]
             absolute -inset-[20px] opacity-75 will-change-transform animate-aurora
             after:content-[""] after:absolute after:inset-0
             after:[background-image:var(--dark-gradient),var(--aurora)]
