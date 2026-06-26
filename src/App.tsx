@@ -584,8 +584,8 @@ export default function App() {
 
       {/* Footer */}
       <footer className="py-12 text-center text-xs text-neutral-600 font-mono border-t border-neutral-950 pb-24 md:pb-28">
-        <p>© {new Date().getFullYear()} LILDANGER. Built with Vite, React & Framer Motion.</p>
-        <p className="mt-1 text-[10px] text-neutral-700">Code with beat, drum, and science.</p>
+        <p>© {new Date().getFullYear()} LILDANGER. Built with Vite & React.</p>
+        <p className="mt-1 text-[10px] text-neutral-700">一念即是极乐.</p>
       </footer>
 
       {/* Top Left Floating Navigation Dock */}
