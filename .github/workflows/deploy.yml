@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  actions: read
 
 jobs:
   build-and-deploy:
@@ -15,22 +16,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Install and Build 🔧
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.4.0
         with:
           node-version: 24
           cache: npm
 
       - name: Install dependencies 📦
-        run: npm install
+        run: npm ci
 
       - name: Build project 🏗️
         run: npm run build
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@6c2e9a5a25b27bce1b5bb14e8e9cb9acd45f62f0 # v4.7.3
         with:
           folder: dist
           branch: gh-pages
