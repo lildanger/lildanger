@@ -1,4 +1,4 @@
-# 项目技术栈与结构指南 (Project Stack & Structure Guide)
+# 项目技术栈与结构指南 (Project Stack & Structure Guide)1
 
 本项目是独立音乐制作人及全栈软件开发者 **党俊源 (蛋卷)** 的个人品牌作品集网站。全站基于最新的 **Ein UI 官方高保真液态玻璃质感 (Obsidian Glassmorphism)** 规范与 **Tailwind CSS v4** 进行了全方位的视觉重塑，深度融合了硬核数字音频 (DSP) 的极客感与高级物理动效。
 
