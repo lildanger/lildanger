@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Gamepad2,
@@ -19,6 +19,8 @@ import { GlassAvatar } from "@/components/ui/glass-avatar";
 import { GlassBadge } from "@/components/ui/glass-badge";
 import { GlassButton } from "@/components/ui/glass-button";
 import wechatImg from "@/assets/wechat.png";
+import { QuantumGrid } from "@/components/ui/quantum-grid";
+import { ScrambleText } from "@/components/ui/scramble-text";
 
 // 自定义 GitHub 图标 (因为 lucide-react 移除了品牌图标)
 const GithubIcon = ({ className }: { className?: string }) => (
@@ -141,7 +143,7 @@ export default function App() {
       title: "押韵工具 (fuckrapper.online)",
       description: "专为说唱歌手与词创作者打造的在线查询利器。自研的高级拼音与音调检索算法，完美助力灵感创作。支持单押、双押及多音节极速查询。",
       link: "https://fuckrapper.online/",
-      icon: <Disc className="h-8 w-8 text-amber-400" />,
+      icon: <Disc className="h-8 w-8 text-purple-400" />,
       tags: ["Pinyin DSP", "Rhyme Search", "Web App", "Creative Writing"],
     },
     {
@@ -155,21 +157,21 @@ export default function App() {
       title: "边境开拓者 (Border Pioneer)",
       description: "在 Steam 发售的独立经营游戏，荣登 2025 年国产生态独立游戏销量前十。我负责了游戏内完整的音乐制作、音效制作与声音设计，编写了部分音频触发 logic 与彩蛋代码，并独立完成了 Linux 与 macOS 的平台适配移植与 QA 。",
       link: "https://store.steampowered.com/app/2346410/Border_Pioneer/",
-      icon: <Gamepad2 className="h-8 w-8 text-amber-400" />,
+      icon: <Gamepad2 className="h-8 w-8 text-emerald-400" />,
       tags: ["2025 销量前十", "音乐与音效制作", "Game Audio", "Linux & Mac QA"],
     },
     {
       title: "网易云音乐人 (蛋卷)",
       description: "独立音乐人，积累 18,000+ 粉丝，参与制作歌曲全网播放量达 2 亿+次。为圣代（《Welcome 2 my HOOD》）、JR FOG（《肥宅水》）、木秦等说唱歌手与艺人提供高水准编曲与混音。",
       link: "https://music.163.com/#/artist?id=1079143",
-      icon: <Music className="h-8 w-8 text-amber-400" />,
+      icon: <Music className="h-8 w-8 text-red-500" />,
       tags: ["2亿+播放", "1.8万+粉丝", "编曲 / 混音", "母带", "声学处理", "现场PA", "调音"],
     },
     {
       title: "Bilibili频道",
       description: "分享游戏音频设计、编曲幕后、DSP 算法以及硬件模拟合成器电路仿真。用硬核技术与律动连接极客与乐迷。",
       link: "https://space.bilibili.com/2727",
-      icon: <Tv className="h-8 w-8 text-amber-400" />,
+      icon: <Tv className="h-8 w-8 text-pink-400" />,
       tags: ["Vlog", "Tutorials", "Audio Tech", "Hardware Synths"],
     },
   ];
@@ -244,7 +246,7 @@ export default function App() {
     },
     {
       title: "押韵工具",
-      icon: <Disc className="h-full w-full text-amber-400" />,
+      icon: <Disc className="h-full w-full text-purple-400" />,
       href: "https://fuckrapper.online/",
     },
     {
@@ -254,12 +256,12 @@ export default function App() {
     },
     {
       title: "网易云音乐",
-      icon: <Music className="h-full w-full text-amber-400" />,
+      icon: <Music className="h-full w-full text-red-500" />,
       href: "https://music.163.com/#/artist?id=1079143",
     },
     {
       title: "Bilibili",
-      icon: <Tv className="h-full w-full text-amber-400" />,
+      icon: <Tv className="h-full w-full text-pink-400" />,
       href: "https://space.bilibili.com/2727",
     },
   ];
@@ -319,25 +321,12 @@ export default function App() {
     },
   ];
 
-  const [currentRole, setCurrentRole] = useState(WORDS[0]);
   const [showWechatModal, setShowWechatModal] = useState(false);
-
-  // 自动轮播当前角色定位
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentRole((prev) => {
-        const currentIndex = WORDS.indexOf(prev);
-        const nextIndex = (currentIndex + 1) % WORDS.length;
-        return WORDS[nextIndex];
-      });
-    }, 3500);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <div className="relative min-h-screen bg-black font-sans antialiased text-neutral-200 selection:bg-amber-500/30 selection:text-amber-200">
-      {/* 背景网格纹理 */}
-      <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808005_1px,transparent_1px),linear-gradient(to_bottom,#80808005_1px,transparent_1px)] bg-[size:28px_28px] pointer-events-none"></div>
+      {/* 纯 Canvas 高性能量子微粒背景网格 */}
+      <QuantumGrid />
 
       {/* Hero Section - 极光背景包裹，移动端采用自适应高度与内边距以保证紧凑 */}
       <section id="home" className="relative w-full">
@@ -357,23 +346,12 @@ export default function App() {
               蛋卷
             </h1>
 
-            {/* 独立角色名字纯文字轮播 */}
-            <div className="mt-4 md:mt-8 flex items-center justify-center text-lg sm:text-xl text-neutral-300 font-light h-10 select-none overflow-hidden relative w-full text-center">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentRole}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.35, ease: "easeInOut" }}
-                  className="font-semibold text-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.35)] text-center w-full"
-                >
-                  {currentRole}
-                </motion.div>
-              </AnimatePresence>
+            {/* 独立角色名字纯文字轮播 (自研原生 JS 密文解密) */}
+            <div className="mt-4 md:mt-8 flex items-center justify-center text-lg sm:text-xl text-neutral-300 font-light h-10 select-none relative w-full text-center">
+              <ScrambleText words={WORDS} />
             </div>
 
-            <p className="mt-3 md:mt-4 text-xs sm:text-sm md:text-base text-neutral-400 max-w-2xl font-light leading-relaxed">
+            <p className="mt-3 md:mt-4 text-xs sm:text-sm md:text-base text-neutral-300 max-w-2xl font-normal leading-relaxed">
               自幼写下第一行代码，与律动共振十余年。
               在数字世界里，我是全栈开发者与音频 DSP 探索者；在声音的世界里，我是全网 2 亿+播放量的独立音乐人、混音师与游戏音频总监。
               致力于将 C++/Rust、电声电路仿真与硬核 Hip-Hop/EDM 融为一体。
@@ -483,7 +461,7 @@ export default function App() {
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-heading">
             欢迎技术交流与业务合作
           </h2>
-          <p className="text-neutral-400 text-sm max-w-xl leading-relaxed mt-2 font-light">
+          <p className="text-neutral-300 text-sm max-w-xl leading-relaxed mt-2 font-normal">
             如果您在混音、母带、编曲、声学、DAW 使用，或者在音频算法、模拟电路仿真等方向有探讨意向，或者寻求游戏音乐音效外包合作，欢迎随时通过以下方式与我取得联系。
           </p>
         </div>
@@ -502,11 +480,11 @@ export default function App() {
                   </h3>
                 </div>
                 <div className="mb-3 pt-0.5 flex items-baseline gap-1.5 flex-wrap">
-                  <span className="text-amber-400 font-bold font-mono text-xl md:text-2xl tracking-tight">
+                  <span className="text-amber-400 font-bold font-sans text-xl md:text-2xl tracking-tight">
                     {card.price}
                   </span>
                   {card.unit && (
-                    <span className="text-zinc-400 text-[10px] md:text-xs font-light whitespace-nowrap">
+                    <span className="text-zinc-400 text-[10px] md:text-xs font-normal whitespace-nowrap">
                       {card.unit}
                     </span>
                   )}
@@ -516,7 +494,7 @@ export default function App() {
                     </span>
                   )}
                 </div>
-                <ul className="space-y-1.5 text-[11px] md:text-xs text-zinc-400 font-light border-t border-amber-500/10 pt-3">
+                <ul className="space-y-1.5 text-[11px] md:text-xs text-zinc-300 font-normal border-t border-amber-500/10 pt-3">
                   {card.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start gap-1.5">
                       <span className="text-amber-400/60 shrink-0 mt-0.5">•</span>
@@ -529,12 +507,12 @@ export default function App() {
           ))}
         </div>
 
-        <div className="flex flex-row items-center justify-center gap-3 sm:gap-6 mt-8 font-mono text-sm w-full max-w-md mx-auto px-2">
+        <div className="flex flex-row items-center justify-center gap-3 sm:gap-6 mt-8 font-sans font-semibold text-xs sm:text-sm w-full max-w-md mx-auto px-2">
           <GlassButton
             variant="brushed-green"
             size="lg"
             glowEffect={false}
-            className="flex-1 sm:flex-none w-auto h-10 sm:h-12 px-3 sm:px-6 text-xs sm:text-base"
+            className="flex-1 sm:flex-none w-auto h-10 sm:h-12 px-3 sm:px-6"
             onClick={() => setShowWechatModal(true)}
           >
             <WechatIcon className="h-4 w-4 text-neutral-950" />
@@ -545,9 +523,9 @@ export default function App() {
             variant="brushed-gold"
             size="lg"
             glowEffect={false}
-            className="flex-1 sm:flex-none w-auto h-10 sm:h-12 px-3 sm:px-6 text-xs sm:text-base"
+            className="flex-1 sm:flex-none w-auto h-10 sm:h-12 px-3 sm:px-6"
           >
-            <a href="mailto:danger0498009@gmail.com" className="flex items-center gap-2 text-neutral-950">
+            <a href="mailto:danger0498009@gmail.com" className="flex items-center gap-2 text-neutral-950 font-sans font-semibold">
               <Mail className="h-4 w-4 text-neutral-950" aria-hidden="true" />
               E-Mail
             </a>
@@ -557,13 +535,13 @@ export default function App() {
             variant="brushed-black-gold"
             size="lg"
             glowEffect={false}
-            className="flex-1 sm:flex-none w-auto h-10 sm:h-12 px-3 sm:px-6 text-xs sm:text-base"
+            className="flex-1 sm:flex-none w-auto h-10 sm:h-12 px-3 sm:px-6"
           >
             <a
               href="https://github.com/lildanger"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-amber-200"
+              className="flex items-center gap-2 text-amber-200 font-sans font-semibold"
             >
               <GithubIcon className="h-4 w-4 text-amber-300" />
               GitHub

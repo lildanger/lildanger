@@ -19,7 +19,7 @@ const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
           ref={ref}
           className={cn(
             "relative rounded-2xl border border-amber-500/20 h-full w-full",
-            "bg-brushed-black-gold backdrop-blur-[8px]",
+            "bg-zinc-950/60 backdrop-blur-[8px]",
             "shadow-[0_8px_32px_rgba(0,0,0,0.6)]",
             "before:absolute before:inset-0 before:rounded-2xl",
             "before:bg-linear-to-b before:from-amber-400/10 before:to-transparent before:pointer-events-none",
@@ -29,6 +29,15 @@ const GlassCard = React.forwardRef<HTMLDivElement, GlassCardProps>(
           )}
           {...props}
         >
+          {/* 金属拉丝条纹图层 (不带任何遮罩，100% 拉伸充满整张卡片) */}
+          <div className="absolute inset-0 bg-brushed-black-gold opacity-100 group-hover:opacity-0 transition-opacity duration-500 pointer-events-none z-0 rounded-2xl" />
+
+          {/* 常态液态流金质感层 (慢速流动) —— Hover 时完全隐藏，让位于极致纯净的冷白毛玻璃 */}
+          <div
+            className="absolute inset-0 bg-gradient-to-tr from-amber-500/[0.02] via-transparent to-yellow-500/[0.005] animate-liquid-morph opacity-45 group-hover:opacity-0 transition-opacity duration-500 pointer-events-none z-0 rounded-2xl"
+            style={{ transform: "scale(1.2)" }}
+          />
+
           <div className="relative z-10 h-full">{children}</div>
         </div>
       </div>

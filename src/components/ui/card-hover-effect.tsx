@@ -34,7 +34,7 @@ export const HoverEffect = ({
           <a
             href={item.link}
             key={item.link}
-            className="relative group block p-0.5 h-full w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/80 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 rounded-3xl transition-shadow duration-150"
+            className="relative group block p-0.5 h-full w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/80 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 rounded-2xl transition-shadow duration-150"
             onMouseEnter={() => setHoveredIndex(idx)}
             onMouseLeave={() => setHoveredIndex(null)}
             target={item.link.startsWith("http") ? "_blank" : undefined}
@@ -43,8 +43,7 @@ export const HoverEffect = ({
             <AnimatePresence>
               {isHovered && (
                 <motion.span
-                  className="absolute inset-0 h-full w-full bg-brushed-gold/10 border border-amber-500/30 block rounded-3xl backdrop-blur-xs"
-                  layoutId="hoverBackground"
+                  className="absolute inset-0 h-full w-full bg-amber-500/[0.03] border border-amber-500/20 block rounded-2xl backdrop-blur-sm"
                   initial={{ opacity: 0 }}
                   animate={{
                     opacity: 1,
@@ -52,7 +51,7 @@ export const HoverEffect = ({
                   }}
                   exit={{
                     opacity: 0,
-                    transition: { duration: 0.15, delay: 0.1 },
+                    transition: { duration: 0.15 },
                   }}
                 />
               )}
@@ -111,21 +110,15 @@ export const Card = ({
     <div
       onMouseEnter={() => setHoveredInternal(true)}
       onMouseLeave={() => setHoveredInternal(false)}
-      className="h-full w-full"
+      className="h-full w-full group"
     >
       <GlassCard
         glowEffect={activeHover}
         className={cn(
-          "p-4 md:p-5 group-hover:border-amber-400/50 transition-all duration-500 overflow-hidden relative",
+          "p-4 md:p-5 group-hover:border-white/20 group-hover:bg-zinc-950/40 group-hover:backdrop-blur-[60px] group-hover:before:from-white/15 group-hover:after:shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)] transition-all duration-500 overflow-hidden relative",
           className
         )}
       >
-        {/* 常态液态流金质感层 (慢速流动) */}
-        <div
-          className="absolute inset-0 bg-gradient-to-tr from-amber-500/[0.02] via-transparent to-yellow-500/[0.005] animate-liquid-morph opacity-45 group-hover:opacity-85 transition-opacity duration-500 pointer-events-none z-0"
-          style={{ transform: "scale(1.2)" }}
-        />
-
         {/* 玻璃切面金色扫光层 (Hover 时触发) */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/[0.03] to-transparent -translate-x-full group-hover:animate-glass-sheen pointer-events-none z-10" />
 
