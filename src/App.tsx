@@ -350,22 +350,12 @@ export default function App() {
           >
             {/* 液态玻璃头像 (移动端尺寸微调缩紧) */}
             <GlassAvatar size="w-20 h-20 md:w-28 md:h-28" className="mb-4 md:mb-6" />
-            {/* 炫酷的徽章 */}
-            <GlassBadge
-              variant="primary"
-              className="inline-flex items-center gap-2 mb-4 md:mb-6 font-mono text-xs uppercase tracking-widest border-amber-400/20 bg-amber-500/[0.05] backdrop-blur-md"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
-              Half Compiler, Half Drum Machine
-            </GlassBadge>
+
 
             {/* 主标题 */}
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-extrabold tracking-tighter text-white bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-500">
-              党俊源
-            </h1>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-mono text-neutral-400 mt-1 md:mt-2 tracking-widest">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-extrabold tracking-tighter text-white bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-500 font-heading">
               蛋卷
-            </h2>
+            </h1>
 
             {/* 独立角色名字纯文字轮播 */}
             <div className="mt-4 md:mt-8 flex items-center justify-center text-lg sm:text-xl text-neutral-300 font-light h-10 select-none overflow-hidden relative w-full text-center">
@@ -437,7 +427,7 @@ export default function App() {
             <Gamepad2 className="h-4 w-4 text-amber-400" />
             Works & Creations
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-heading">
             核心作品与平台
           </h2>
           <p className="text-sm text-neutral-400 max-w-lg">
@@ -462,7 +452,7 @@ export default function App() {
             <Sliders className="h-4 w-4 text-amber-400" />
             Audio Tech & Domain Knowledge
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-heading">
             音频技术与专业研究领域
           </h2>
           <p className="text-sm text-neutral-400 max-w-lg">
@@ -490,7 +480,7 @@ export default function App() {
             <Mail className="h-3 w-3 text-amber-400" />
             Get In Touch
           </GlassBadge>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-heading">
             欢迎技术交流与业务合作
           </h2>
           <p className="text-neutral-400 text-sm max-w-xl leading-relaxed mt-2 font-light">
@@ -507,12 +497,12 @@ export default function App() {
                   <div className="text-amber-400 shrink-0">
                     {card.icon}
                   </div>
-                  <h3 className="text-zinc-100 font-bold text-xs sm:text-sm md:text-base tracking-wide">
+                  <h3 className="text-zinc-100 font-bold text-xs sm:text-sm md:text-base tracking-wide font-heading">
                     {card.title}
                   </h3>
                 </div>
                 <div className="mb-3 pt-0.5 flex items-baseline gap-1.5 flex-wrap">
-                  <span className="text-amber-400 font-bold font-sans text-xl md:text-2xl tracking-tight">
+                  <span className="text-amber-400 font-bold font-mono text-xl md:text-2xl tracking-tight">
                     {card.price}
                   </span>
                   {card.unit && (
