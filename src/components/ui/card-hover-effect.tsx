@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { GlassCard } from "@/components/ui/glass-card";
 import { GlassBadge } from "@/components/ui/glass-badge";
+import GlareHover from "@/components/reactbits/GlareHover/GlareHover";
 
 export interface HoverEffectItem {
   title: string;
@@ -33,29 +33,13 @@ export const HoverEffect = ({
         return (
           <a
             href={item.link}
-            key={item.link}
-            className="relative group block p-0.5 h-full w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/80 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 rounded-2xl transition-shadow duration-150"
+            key={item.title}
+            className="relative group block h-full w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/80 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 rounded-2xl transition-transform duration-200 active:scale-[0.99]"
             onMouseEnter={() => setHoveredIndex(idx)}
             onMouseLeave={() => setHoveredIndex(null)}
             target={item.link.startsWith("http") ? "_blank" : undefined}
             rel="noopener noreferrer"
           >
-            <AnimatePresence>
-              {isHovered && (
-                <motion.span
-                  className="absolute inset-0 h-full w-full bg-amber-500/[0.03] border border-amber-500/20 block rounded-2xl backdrop-blur-sm"
-                  initial={{ opacity: 0 }}
-                  animate={{
-                    opacity: 1,
-                    transition: { duration: 0.15 },
-                  }}
-                  exit={{
-                    opacity: 0,
-                    transition: { duration: 0.15 },
-                  }}
-                />
-              )}
-            </AnimatePresence>
             <Card isHovered={isHovered}>
               <div className="flex flex-col justify-between h-full">
                 <div>
@@ -110,20 +94,37 @@ export const Card = ({
     <div
       onMouseEnter={() => setHoveredInternal(true)}
       onMouseLeave={() => setHoveredInternal(false)}
-      className="h-full w-full group"
+      className="h-full w-full group rounded-2xl overflow-hidden"
     >
-      <GlassCard
-        glowEffect={activeHover}
-        className={cn(
-          "p-4 md:p-5 group-hover:border-white/20 group-hover:bg-zinc-950/40 group-hover:backdrop-blur-[60px] group-hover:before:from-white/15 group-hover:after:shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)] transition-all duration-500 overflow-hidden relative",
-          className
-        )}
+      {/* 整卡金箔偏光扫光：ReactBits GlareHover（随悬停顺滑掠过整张黑曜石玻璃卡） */}
+      <GlareHover
+        width="100%"
+        height="100%"
+        background="transparent"
+        borderRadius="1rem"
+        borderColor="transparent"
+        glareColor="#fbbf24"
+        glareOpacity={0.16}
+        glareAngle={-35}
+        glareSize={100}
+        softness={0.75}
+        variant="sheen"
+        mode="hover"
+        blendMode="screen"
+        transitionDuration={800}
+        rimGlint={false}
+        className="h-full w-full"
       >
-        {/* 玻璃切面金色扫光层 (Hover 时触发) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400/[0.03] to-transparent -translate-x-full group-hover:animate-glass-sheen pointer-events-none z-10" />
-
-        <div className="relative z-20 h-full">{children}</div>
-      </GlassCard>
+        <GlassCard
+          glowEffect={activeHover}
+          className={cn(
+            "p-5 md:p-6 h-full w-full rounded-2xl border border-white/[0.08] hover:border-amber-400/40 bg-zinc-950/70 hover:bg-zinc-900/60 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.6)] hover:shadow-[0_12px_40px_rgba(245,158,11,0.12)] transition-all duration-300 relative overflow-hidden",
+            className
+          )}
+        >
+          <div className="flex h-full w-full flex-col justify-between relative z-20">{children}</div>
+        </GlassCard>
+      </GlareHover>
     </div>
   );
 };

@@ -36,7 +36,7 @@ const FloatingDockDesktop = ({
   return (
     <div
       className={cn(
-        "mx-auto hidden md:flex h-14 gap-3 items-center rounded-2xl bg-brushed-black-gold border border-amber-500/25 px-4 shadow-[0_8px_32px_rgba(0,0,0,0.6)]",
+        "mx-auto hidden md:flex h-14 gap-3 items-center rounded-2xl backdrop-blur-xl bg-black/85 border border-amber-500/25 px-4 shadow-[0_8px_32px_rgba(0,0,0,0.7)]",
         className
       )}
     >

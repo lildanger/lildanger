@@ -16,12 +16,12 @@ export const AuroraBackground = ({
   return (
     <div
       className={cn(
-        "relative flex flex-col h-[100vh] items-center justify-center bg-black text-slate-100 transition-colors duration-300",
+        "relative flex flex-col items-center justify-center bg-black text-slate-100 transition-colors duration-300",
         className
       )}
       {...props}
     >
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none [mask-image:linear-gradient(to_bottom,black_30%,rgba(0,0,0,0.4)_75%,transparent_100%)]">
         <div
           className={cn(
             `
@@ -43,7 +43,7 @@ export const AuroraBackground = ({
           )}
         ></div>
       </div>
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
+      <div className="relative z-10 w-full flex flex-col items-center justify-center">
         {children}
       </div>
     </div>

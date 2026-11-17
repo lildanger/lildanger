@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import {
   Gamepad2,
   Music,
@@ -13,14 +13,25 @@ import {
   Radio,
 } from "lucide-react";
 import { AuroraBackground } from "@/components/ui/aurora-background";
-import { HoverEffect, Card } from "@/components/ui/card-hover-effect";
+import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { FloatingDock } from "@/components/ui/floating-dock";
-import { GlassAvatar } from "@/components/ui/glass-avatar";
 import { GlassBadge } from "@/components/ui/glass-badge";
 import { GlassButton } from "@/components/ui/glass-button";
 import wechatImg from "@/assets/wechat.png";
+import heroImg from "@/assets/hero.png";
 import { QuantumGrid } from "@/components/ui/quantum-grid";
-import { ScrambleText } from "@/components/ui/scramble-text";
+
+import ShinyText from "@/components/reactbits/ShinyText/ShinyText";
+import StarBorder from "@/components/reactbits/StarBorder/StarBorder";
+import SpotlightCard from "@/components/reactbits/SpotlightCard/SpotlightCard";
+import ClickSpark from "@/components/reactbits/ClickSpark/ClickSpark";
+import TiltedCard from "@/components/reactbits/TiltedCard/TiltedCard";
+import HoloCard from "@/components/reactbits/HoloCard/HoloCard";
+import Noise from "@/components/reactbits/Noise/Noise";
+import DecryptedText from "@/components/reactbits/DecryptedText/DecryptedText";
+import SpecularButton from "@/components/reactbits/SpecularButton/SpecularButton";
+import Counter from "@/components/reactbits/Counter/Counter";
+import LogoLoop from "@/components/reactbits/LogoLoop/LogoLoop";
 
 // 自定义 GitHub 图标 (因为 lucide-react 移除了品牌图标)
 const GithubIcon = ({ className }: { className?: string }) => (
@@ -135,6 +146,35 @@ const BaguaIcon = ({ className }: { className?: string }) => {
 };
 
 const WORDS = ["我是全栈软件开发者", "我是独立音乐制作人", "我是音频 DSP 探索者", "我是模拟电路极客"];
+
+// 技术栈滚动条数据（ReactBits LogoLoop）
+const TECH_LOGOS = [
+  "React", "TypeScript", "Tailwind CSS", "Vite", "Framer Motion", "GSAP",
+  "C++", "Rust", "DSP", "Pro Tools", "Ableton Live", "Bitwig", "FMOD", "Wwise", "Eurorack"
+].map((name) => ({
+  node: <span className="whitespace-nowrap font-mono text-xs md:text-sm text-neutral-300">{name}</span>,
+  title: name
+}));
+
+
+
+// Hero 数据条（ReactBits Counter）
+const HeroStat = ({ value, suffix, label, decimals }: { value: number; suffix: string; label: string; decimals?: number }) => (
+  <div className="flex flex-col items-center gap-1">
+    <Counter
+      value={value}
+      decimals={decimals}
+      suffix={suffix}
+      duration={1.6}
+      bounce={0.2}
+      fontSize="1.35rem"
+      fontWeight={700}
+      textColor="#fbbf24"
+      className="font-heading leading-none"
+    />
+    <span className="font-mono text-[10px] md:text-[11px] tracking-wider text-neutral-400">{label}</span>
+  </div>
+);
 
 export default function App() {
   // 项目与网站数据
@@ -322,33 +362,102 @@ export default function App() {
   ];
 
   const [showWechatModal, setShowWechatModal] = useState(false);
+  // 滚动监听：首屏滚动提示随下滚平滑淡出，不遮挡后续板块
+  const { scrollY } = useScroll();
+  const scrollHintOpacity = useTransform(scrollY, [0, 50], [1, 0]);
+  const scrollHintPointerEvents = useTransform(scrollY, (v) => (v > 50 ? "none" : "auto"));
+
+  // Hero 角色轮播：每 4.2s 换一句，交给 ReactBits DecryptedText 做标准解密动画
+  const [roleIndex, setRoleIndex] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => setRoleIndex((index) => (index + 1) % WORDS.length), 4200);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <div className="relative min-h-screen bg-black font-sans antialiased text-neutral-200 selection:bg-amber-500/30 selection:text-amber-200">
-      {/* 纯 Canvas 高性能量子微粒背景网格 */}
+    <ClickSpark
+      sparkColor={["#fbbf24", "#f59e0b", "#fde68a"]}
+      sparkSize={9}
+      sparkRadius={18}
+      sparkCount={8}
+      sparkWidth={1.5}
+      duration={420}
+      easing="spring"
+      extraScale={1.2}
+      shape="star"
+      randomness={0.6}
+      glow={0.5}
+      spread={115}
+      className="min-h-screen"
+    >
+      <div className="relative min-h-screen bg-black font-sans antialiased text-neutral-200 selection:bg-amber-500/30 selection:text-amber-200">
+      {/* 全站背景：纯 Canvas 高性能量子微粒背景网格 (黑曜石微粒呼吸) */}
       <QuantumGrid />
 
-      {/* Hero Section - 极光背景包裹，移动端采用自适应高度与内边距以保证紧凑 */}
+      {/* Hero Section - 极光微光包裹，自然高度，与下方内容无缝衔接 */}
       <section id="home" className="relative w-full">
-        <AuroraBackground className="h-auto min-h-screen py-12 md:h-[100vh] md:py-0">
+        <AuroraBackground className="h-auto min-h-[82vh] md:min-h-[88vh] pt-24 pb-8 md:pt-32 md:pb-12 flex flex-col items-center justify-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="flex flex-col items-center justify-center text-center px-4 w-full max-w-4xl"
           >
-            {/* 液态玻璃头像 (移动端尺寸微调缩紧) */}
-            <GlassAvatar size="w-20 h-20 md:w-28 md:h-28" className="mb-4 md:mb-6" />
+            {/* 头像：ReactBits TiltedCard（3D 倾斜 + 金色反光 + 投影） */}
+            <TiltedCard
+              imageSrc={heroImg}
+              altText="蛋卷 LILDANGER 头像"
+              captionText="LILDANGER · 音乐人 / 开发者"
+              containerWidth="7rem"
+              containerHeight="7rem"
+              imageWidth="7rem"
+              imageHeight="7rem"
+              radius={26}
+              rotateAmplitude={14}
+              scaleOnHover={1.06}
+              glare={0.55}
+              glareColor="#fbbf24"
+              shadow={0.6}
+              flipOnClick={false}
+              className="mb-4 md:mb-6"
+            />
 
 
             {/* 主标题 */}
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-extrabold tracking-tighter text-white bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-500 font-heading">
-              蛋卷
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-extrabold tracking-tighter font-heading leading-none">
+              <ShinyText
+                text="蛋卷"
+                color="#f5f5f4"
+                shineColor="#fbbf24"
+                speed={3.4}
+                angle={115}
+                shineWidth={36}
+                softness={0.72}
+                glow={0.35}
+                className="text-4xl sm:text-6xl md:text-8xl font-extrabold tracking-tighter font-heading leading-none"
+              />
             </h1>
 
-            {/* 独立角色名字纯文字轮播 (自研原生 JS 密文解密) */}
-            <div className="mt-4 md:mt-8 flex items-center justify-center text-lg sm:text-xl text-neutral-300 font-light h-10 select-none relative w-full text-center">
-              <ScrambleText words={WORDS} />
+            {/* 角色轮播：ReactBits 标准 DecryptedText（effect=scramble） */}
+            <div className="mt-4 md:mt-8 flex items-center justify-center text-lg sm:text-xl font-light h-10 select-none relative w-full text-center">
+              <DecryptedText
+                key={WORDS[roleIndex]}
+                text={WORDS[roleIndex]}
+                animateOn="view"
+                effect="scramble"
+                sequential={true}
+                revealDirection="start"
+                speed={60}
+                maxIterations={10}
+                hoverRadius={100}
+                scrambleColor="#fbbf24"
+                loop={false}
+                loopDelay={2000}
+                useOriginalCharsOnly={false}
+                characters="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+"
+                className="text-amber-400 font-semibold drop-shadow-[0_0_8px_rgba(245,158,11,0.35)]"
+                encryptedClassName="text-amber-300/80"
+              />
             </div>
 
             <p className="mt-3 md:mt-4 text-xs sm:text-sm md:text-base text-neutral-300 max-w-2xl font-normal leading-relaxed">
@@ -366,14 +475,22 @@ export default function App() {
               <GlassBadge variant="outline" size="sm" className="bg-amber-500/[0.02] border-amber-500/10 text-amber-300/80 hover:bg-amber-500/[0.08] hover:text-amber-200 transition-colors">全栈软件工程</GlassBadge>
             </div>
 
-            {/* 下滑提示 (移动端隐藏以防多余留白) */}
-            <a
+            {/* 关键数据：ReactBits Counter（里程表式数字，进视口自动滚动） */}
+            <div className="mt-5 md:mt-7 grid grid-cols-3 items-center gap-4 md:gap-10">
+              <HeroStat value={2} suffix="亿+" label="全网歌曲播放" />
+              <HeroStat value={1.8} decimals={1} suffix="万+" label="网易云粉丝" />
+              <HeroStat value={10} suffix="+" label="年音频制作" />
+            </div>
+
+            {/* 首屏引导下滚提示：随滚动自然淡出，彻底避免卡在板块中间 */}
+            <motion.a
               href="#projects"
-              className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-neutral-500 font-mono text-[10px] uppercase tracking-widest cursor-pointer select-none hover:text-amber-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/80 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 rounded p-1"
+              style={{ opacity: scrollHintOpacity, pointerEvents: scrollHintPointerEvents }}
+              className="mt-6 md:mt-8 hidden md:flex flex-col items-center gap-1.5 text-neutral-400 font-mono text-[10px] uppercase tracking-widest cursor-pointer select-none hover:text-amber-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/80 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950 rounded p-1"
               aria-label="向下滚动探索作品与创建项目"
             >
               <span>Scroll to explore</span>
-              <div className="w-1 h-8 rounded bg-neutral-800 overflow-hidden relative" aria-hidden="true">
+              <div className="w-1 h-6 rounded bg-neutral-800/80 overflow-hidden relative border border-amber-500/20" aria-hidden="true">
                 <motion.div
                   animate={{
                     y: ["-100%", "100%"],
@@ -383,37 +500,55 @@ export default function App() {
                     duration: 1.5,
                     ease: "easeInOut",
                   }}
-                  className="w-full h-1/2 bg-amber-500 absolute top-0"
+                  className="w-full h-1/2 bg-amber-400 absolute top-0"
                 ></motion.div>
               </div>
-            </a>
+            </motion.a>
           </motion.div>
         </AuroraBackground>
       </section>
 
+      {/* 板块衔接：黑曜石微光渐变分割线 */}
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-6 pointer-events-none" aria-hidden="true">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-amber-500/25 to-transparent" />
+      </div>
+
       {/* Projects Section */}
       <motion.section
         id="projects"
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="py-12 md:py-24 px-4 max-w-6xl mx-auto relative z-10"
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="pt-6 md:pt-10 pb-16 md:pb-24 px-4 max-w-6xl mx-auto relative z-10 scroll-mt-12 md:scroll-mt-20"
       >
         <div className="flex flex-col items-start gap-2 mb-6 md:mb-12">
           <div className="flex items-center gap-2 font-mono text-xs text-amber-500 uppercase tracking-widest">
             <Gamepad2 className="h-4 w-4 text-amber-400" />
             Works & Creations
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-heading">
-            核心作品与平台
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-heading">
+            <ShinyText
+              text="核心作品与平台"
+              color="#ffffff"
+              shineColor="#fbbf24"
+              speed={3.6}
+              angle={115}
+              shineWidth={30}
+              softness={0.7}
+              glow={0.3}
+              className="text-3xl sm:text-4xl font-extrabold tracking-tight font-heading"
+            />
           </h2>
           <p className="text-sm text-neutral-400 max-w-lg">
             这是我主要的发布平台、独立网站及音乐作品。鼠标悬停在卡片上可查看详细信息，点击即可跳转。
           </p>
         </div>
 
-        <HoverEffect items={projects} />
+        {/* 作品区：ReactBits 标准卡片网格（集成 BorderGlow 琥珀光晕与 GlareHover 扫光） */}
+        <div className="mt-2 md:mt-4">
+          <HoverEffect items={projects} className="py-2" />
+        </div>
       </motion.section>
 
       {/* Tech & Skills Section */}
@@ -423,22 +558,50 @@ export default function App() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="py-12 md:py-24 px-4 max-w-6xl mx-auto relative z-10 border-t border-neutral-900/80"
+        className="py-12 md:py-24 px-4 max-w-6xl mx-auto relative z-10 border-t border-neutral-900/80 scroll-mt-12 md:scroll-mt-20"
       >
         <div className="flex flex-col items-start gap-2 mb-6 md:mb-12">
           <div className="flex items-center gap-2 font-mono text-xs text-amber-500 uppercase tracking-widest">
             <Sliders className="h-4 w-4 text-amber-400" />
             Audio Tech & Domain Knowledge
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-heading">
-            音频技术与专业研究领域
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-heading">
+            <ShinyText
+              text="音频技术与专业研究领域"
+              color="#ffffff"
+              shineColor="#fbbf24"
+              speed={3.6}
+              angle={115}
+              shineWidth={30}
+              softness={0.7}
+              glow={0.3}
+              className="text-3xl sm:text-4xl font-extrabold tracking-tight font-heading"
+            />
           </h2>
           <p className="text-sm text-neutral-400 max-w-lg">
             自幼编程，拥有 10+ 年制作经验，涵盖软件、算法、硬核声学及硬件仿真等前沿领域。
           </p>
         </div>
 
+
+
         <HoverEffect items={techCards} className="py-2" />
+
+        {/* 技术栈无缝滚动：ReactBits LogoLoop */}
+        <div className="relative mt-10 md:mt-14 h-16 overflow-hidden">
+          <LogoLoop
+            logos={TECH_LOGOS}
+            speed={70}
+            direction="left"
+            logoHeight={26}
+            gap={44}
+            hoverSpeed={10}
+            pauseOnHover
+            fadeOut
+            scaleOnHover
+            ariaLabel="技术栈"
+          />
+        </div>
       </motion.section>
 
       {/* Contact Section */}
@@ -448,7 +611,7 @@ export default function App() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="py-12 md:py-24 px-4 max-w-4xl mx-auto text-center relative z-10 border-t border-neutral-900/80"
+        className="py-12 md:py-24 px-4 max-w-4xl mx-auto text-center relative z-10 border-t border-neutral-900/80 scroll-mt-12 md:scroll-mt-20"
       >
         <div className="flex flex-col items-center gap-4 mb-8">
           <GlassBadge
@@ -469,7 +632,18 @@ export default function App() {
         {/* 业务合作报价单 (高级液态玻璃排版 - 四列自适应) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto mt-6 mb-10 text-left relative z-20">
           {pricingCards.map((card) => (
-            <Card key={card.title} className="p-4 flex flex-col justify-between border-amber-500/10 hover:border-amber-500/25 transition-all duration-300">
+            <SpotlightCard
+              key={card.title}
+              spotlightColor="#f59e0b"
+              intensity={0.22}
+              spotlightSize={220}
+              softness={0.72}
+              borderGlow={0.85}
+              proximity={110}
+              ambient
+              className="group h-full flex flex-col border border-amber-500/10"
+              style={{ padding: "1rem", borderRadius: "1rem", backgroundColor: "rgba(9, 9, 11, 0.62)" }}
+            >
               <div>
                 <div className="flex items-center gap-2 mb-3">
                   <div className="text-amber-400 shrink-0">
@@ -503,50 +677,87 @@ export default function App() {
                   ))}
                 </ul>
               </div>
-            </Card>
+            </SpotlightCard>
           ))}
         </div>
 
-        <div className="flex flex-row items-center justify-center gap-3 sm:gap-6 mt-8 font-sans font-semibold text-xs sm:text-sm w-full max-w-md mx-auto px-2">
-          <GlassButton
-            variant="brushed-green"
-            size="lg"
-            glowEffect={false}
-            className="flex-1 sm:flex-none w-auto h-10 sm:h-12 px-3 sm:px-6"
-            onClick={() => setShowWechatModal(true)}
-          >
-            <WechatIcon className="h-4 w-4 text-neutral-950" />
-            WeChat
-          </GlassButton>
-          <GlassButton
-            asChild
-            variant="brushed-gold"
-            size="lg"
-            glowEffect={false}
-            className="flex-1 sm:flex-none w-auto h-10 sm:h-12 px-3 sm:px-6"
-          >
-            <a href="mailto:danger0498009@gmail.com" className="flex items-center gap-2 text-neutral-950 font-sans font-semibold">
-              <Mail className="h-4 w-4 text-neutral-950" aria-hidden="true" />
-              E-Mail
-            </a>
-          </GlassButton>
-          <GlassButton
-            asChild
-            variant="brushed-black-gold"
-            size="lg"
-            glowEffect={false}
-            className="flex-1 sm:flex-none w-auto h-10 sm:h-12 px-3 sm:px-6"
-          >
-            <a
-              href="https://github.com/lildanger"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-amber-200 font-sans font-semibold"
+        <div className="grid grid-cols-3 items-center gap-3 sm:gap-6 mt-8 font-sans font-semibold text-xs sm:text-sm w-full max-w-md mx-auto px-2">
+          <div className="min-w-0">
+            <GlassButton
+              variant="brushed-green"
+              size="lg"
+              glowEffect={false}
+              className="w-full h-10 sm:h-12 px-2 sm:px-4"
+              onClick={() => setShowWechatModal(true)}
             >
-              <GithubIcon className="h-4 w-4 text-amber-300" />
-              GitHub
-            </a>
-          </GlassButton>
+              <WechatIcon className="h-4 w-4 text-neutral-950" />
+              WeChat
+            </GlassButton>
+          </div>
+
+          <SpecularButton
+            size="md"
+            radius={12}
+            tint="#f59e0b"
+            tintOpacity={0.22}
+            textColor="#fde68a"
+            lineColor="#fbbf24"
+            baseColor="#b45309"
+            intensity={1}
+            idleIntensity={0.35}
+            shineSize={10}
+            shineFade={34}
+            thickness={1.2}
+            glow={1}
+            followMouse
+            proximity={250}
+            onClick={() => {
+              window.location.href = "mailto:danger0498009@gmail.com";
+            }}
+            style={{ paddingInline: "0.75rem" }}
+            className="w-full min-w-0 h-10 sm:h-12 whitespace-nowrap font-sans font-semibold"
+          >
+            <Mail className="h-4 w-4" aria-hidden="true" />
+            E-Mail
+          </SpecularButton>
+
+          <div className="min-w-0">
+            <StarBorder
+              as="span"
+              color="#fbbf24"
+              trailColor="#fde68a"
+              duration={3.2}
+              thickness={2}
+              radius={12}
+              trailLength={0.35}
+              glow={1}
+              sparkle
+              hover="brighten"
+              clickPulse={false}
+              backgroundColor="transparent"
+              borderColor="transparent"
+              className="w-full"
+              style={{ padding: 0, margin: 0, display: "inline-flex" }}
+            >
+              <GlassButton
+                asChild
+                variant="brushed-black-gold"
+                size="lg"
+                glowEffect={false}
+                className="w-full h-10 sm:h-12 px-2 sm:px-4"
+              >
+                <a
+                  href="https://github.com/lildanger"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-full items-center justify-center gap-2 text-amber-200 font-sans font-semibold"
+                >
+                  <GithubIcon className="h-4 w-4 text-amber-300" />
+                  GitHub
+                </a>
+              </GlassButton>
+            </StarBorder>
+          </div>
         </div>
       </motion.section>
 
@@ -556,8 +767,8 @@ export default function App() {
         <p className="mt-1 text-[10px] text-neutral-700">一念即是极乐.</p>
       </footer>
 
-      {/* Top Left Floating Navigation Dock */}
-      <div className="fixed top-6 left-6 z-50">
+      {/* Top Floating Navigation Dock (移动端左上角汉堡，桌面端顶部对称居中) */}
+      <div className="fixed top-6 left-6 md:left-1/2 md:-translate-x-1/2 z-50">
         <FloatingDock items={dockItems} />
       </div>
 
@@ -594,6 +805,28 @@ export default function App() {
                 <p className="text-xs text-amber-200/60 font-mono">Scan QR Code to Add WeChat</p>
               </div>
 
+              {/* 全息数字名片：ReactBits HoloCard */}
+              <div className="relative z-10 mb-5 flex justify-center">
+                <div className="relative">
+                  <HoloCard
+                    image={heroImg}
+                    alt="LILDANGER 全息数字名片"
+                    preset="rainbow"
+                    width={168}
+                    radius={14}
+                    intensity={0.5}
+                    edgeSparkle={0.4}
+                    glare={0.35}
+                    tiltMax={12}
+                    hoverScale={1.03}
+                    foilColor="#fbbf24"
+                  />
+                  <p className="pointer-events-none absolute inset-x-0 bottom-3 text-center font-mono text-[9px] tracking-[0.3em] text-amber-200/80">
+                    LILDANGER · 音乐人 / 开发者
+                  </p>
+                </div>
+              </div>
+
               {/* 二维码图片容器 */}
               <div className="relative z-10 mx-auto aspect-square w-64 overflow-hidden rounded-xl border border-amber-500/10 bg-black/40 p-2 shadow-inner">
                 <img
@@ -615,6 +848,10 @@ export default function App() {
           </div>
         )}
       </AnimatePresence>
-    </div>
+
+      {/* 全站胶片颗粒：ReactBits Noise（混合模式叠加，指针穿透） */}
+      <Noise fixed opacity={0.06} fps={0} blendMode="soft-light" size={1.2} dust={0} />
+      </div>
+    </ClickSpark>
   );
 }
